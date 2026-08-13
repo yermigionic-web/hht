@@ -89,7 +89,7 @@ export default function SelectScene() {
                 className={`figure-slot ${active ? "active" : "idle"} side-${wrapped}`}
               >
                 <div className="figure-spin">
-                  <img src={c.figure} alt={c.name} draggable={false} />
+                  <Standing src={c.figure} name={c.name} />
                 </div>
               </div>
             );
@@ -140,4 +140,19 @@ export default function SelectScene() {
       )}
     </section>
   );
+}
+
+function Standing({ src, name }: { src: string; name: string }) {
+  const [missing, setMissing] = useState(false);
+  useEffect(() => {
+    setMissing(false);
+  }, [src]);
+  if (missing) {
+    return (
+      <div className="standing-empty" aria-hidden>
+        {name}
+      </div>
+    );
+  }
+  return <img src={src} alt={name} draggable={false} onError={() => setMissing(true)} />;
 }
