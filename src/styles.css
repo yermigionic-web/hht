@@ -182,13 +182,13 @@ img {
 }
 
 .select-scene.is-nahyeon {
-  --accent: #e08a4a;
+  --accent: #b9a8e6;
 }
 .select-scene.is-yousang {
-  --accent: #8eb4c8;
+  --accent: #5ec4b8;
 }
 .select-scene.is-young {
-  --accent: #c4a06a;
+  --accent: #d4a8b4;
 }
 
 .select-bg {
@@ -692,13 +692,13 @@ img {
 }
 
 .room-scene.is-nahyeon {
-  --accent: #e08a4a;
+  --accent: #b9a8e6;
 }
 .room-scene.is-yousang {
-  --accent: #8eb4c8;
+  --accent: #5ec4b8;
 }
 .room-scene.is-young {
-  --accent: #c4a06a;
+  --accent: #d4a8b4;
 }
 
 .hot-label {
@@ -793,20 +793,20 @@ img {
 .clue-scene.is-nahyeon,
 .record-scene.is-nahyeon,
 .question-scene.is-nahyeon {
-  --accent: #e08a4a;
-  background: #0c0a09;
+  --accent: #b9a8e6;
+  background: #0c0814;
 }
 .clue-scene.is-yousang,
 .record-scene.is-yousang,
 .question-scene.is-yousang {
-  --accent: #8eb4c8;
-  background: #090b0e;
+  --accent: #5ec4b8;
+  background: #061210;
 }
 .clue-scene.is-young,
 .record-scene.is-young,
 .question-scene.is-young {
-  --accent: #c4a06a;
-  background: #120e0a;
+  --accent: #d4a8b4;
+  background: #141018;
 }
 
 .clue-hud {
