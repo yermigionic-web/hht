@@ -15,5 +15,19 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <script id="static-fallback">
+      window.addEventListener(
+        "error",
+        function (e) {
+          var t = e && e.target;
+          if (!t || t.tagName !== "SCRIPT") return;
+          if (String(t.src || "").indexOf("main.tsx") === -1) return;
+          var next = new URL("docs/", location.href);
+          next.hash = location.hash;
+          location.replace(next.href);
+        },
+        true,
+      );
+    </script>
   </body>
 </html>
