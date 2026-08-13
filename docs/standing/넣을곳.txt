@@ -1,0 +1,9 @@
+넣은 파일. 우선순위 mp4 → png.
+
+nahyeon.mp4 / nahyeon.png   안나현
+yousang.mp4 / yousang.png   서유상
+young.mp4  / young.png      반영
+
+전신 스탠딩. 생성 이미지는 쓰지 않습니다.
+그림을 자르거나 가리는 마스크는 없습니다.
+mp4는 선택 중일 때만 음소거 루프. BGM은 각 캐릭터 mp3.

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Inspect } from "../components/Inspect";
+import { ThemePatch } from "../components/ThemePatch";
 import { getCharacter } from "../game/characters";
 import { getClue, layerIndex } from "../game/clues";
 import { sfx } from "../audio/sfx";
@@ -51,6 +52,7 @@ export default function ClueScene() {
 
   return (
     <section className={`scene clue-scene is-${ch.id}`} data-character={ch.id}>
+      <ThemePatch id={ch.id} />
       <header className="clue-hud">
         <button type="button" className="ghost" onClick={leave}>
           방으로

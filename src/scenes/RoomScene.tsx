@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCharacter } from "../game/characters";
 import { cluesFor, isRevealed, layerIndex } from "../game/clues";
+import { ThemePatch } from "../components/ThemePatch";
 import { useAudio } from "../audio/AudioProvider";
 import { sfx } from "../audio/sfx";
 import { useGame } from "../store/GameProvider";
@@ -34,6 +35,7 @@ export default function RoomScene() {
 
   return (
     <section className={`scene room-scene is-${ch.id}`} data-character={ch.id}>
+      <ThemePatch id={ch.id} />
       <div className="room-plate">
         <img className="room-art" src={ch.room} alt={`${ch.name}의 방`} draggable={false} />
         <div className="room-shade" />

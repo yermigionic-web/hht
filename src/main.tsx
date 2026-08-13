@@ -5,6 +5,7 @@ import App from "./App";
 import { AudioProvider } from "./audio/AudioProvider";
 import { GameProvider } from "./store/GameProvider";
 import "./styles.css";
+import "./theme-patches.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
