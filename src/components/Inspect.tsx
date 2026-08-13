@@ -11,10 +11,16 @@ import type {
   TaxiRide,
 } from "../game/types";
 
-export function Inspect({ data }: { data: InspectData }) {
+export function Inspect({
+  data,
+  onOpenApp,
+}: {
+  data: InspectData;
+  onOpenApp?: (id: string) => void;
+}) {
   switch (data.kind) {
     case "phone":
-      return <PhoneFrame owner={data.owner} apps={data.apps} />;
+      return <PhoneFrame owner={data.owner} apps={data.apps} onOpenApp={onOpenApp} />;
     case "receipt":
       return (
         <article className="paper receipt">
@@ -108,7 +114,15 @@ function Calendar({ events }: { events: CalEvent[] }) {
   );
 }
 
-function PhoneFrame({ owner, apps }: { owner: string; apps: PhoneApp[] }) {
+function PhoneFrame({
+  owner,
+  apps,
+  onOpenApp,
+}: {
+  owner: string;
+  apps: PhoneApp[];
+  onOpenApp?: (id: string) => void;
+}) {
   const [app, setApp] = useState<string | null>(null);
   const current = apps.find((a) => a.id === app);
 
@@ -120,7 +134,14 @@ function PhoneFrame({ owner, apps }: { owner: string; apps: PhoneApp[] }) {
           <p className="phone-owner">{owner}</p>
           <div className="app-grid">
             {apps.map((a) => (
-              <button key={a.id} type="button" onClick={() => setApp(a.id)}>
+              <button
+                key={a.id}
+                type="button"
+                onClick={() => {
+                  onOpenApp?.(a.id);
+                  setApp(a.id);
+                }}
+              >
                 {a.label}
               </button>
             ))}

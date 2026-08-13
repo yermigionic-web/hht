@@ -9,7 +9,7 @@ import {
 import type { CharacterId, GameProgress } from "../game/types";
 import { layerIndex, questionReady, getClue } from "../game/clues";
 
-const KEY = "three-rooms-progress-v1";
+const KEY = "three-rooms-progress-v2";
 
 const empty: GameProgress = {
   found: [],
@@ -23,7 +23,9 @@ function load(): GameProgress {
   try {
     const raw = localStorage.getItem(KEY);
     if (!raw) return empty;
-    return { ...empty, ...JSON.parse(raw) };
+    const parsed = { ...empty, ...JSON.parse(raw) } as GameProgress;
+    parsed.seenLayer = parsed.seenLayer ?? {};
+    return parsed;
   } catch {
     return empty;
   }
@@ -37,11 +39,11 @@ interface GameApi {
   progress: GameProgress;
   foundSet: Set<string>;
   markEntered: (id: CharacterId) => void;
-  findClue: (id: string) => { updated: boolean; layer: number };
-  markQuestion: (id: CharacterId) => void;
+  recordClue: (id: string) => { updated: boolean; layer: number };
   markFinished: (id: CharacterId) => void;
   reset: () => void;
   canAsk: (id: CharacterId) => boolean;
+  confirmedLayer: (id: string) => number;
 }
 
 const Ctx = createContext<GameApi | null>(null);
@@ -60,7 +62,7 @@ export function GameProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const findClue = useCallback((id: string) => {
+  const recordClue = useCallback((id: string) => {
     let result = { updated: false, layer: 0 };
     setProgress((p) => {
       const clue = getClue(id);
@@ -75,22 +77,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
         seenLayer: { ...p.seenLayer, [id]: layer },
       };
       const char = clue?.characterId;
-      if (char && questionReady(char, found) && !next.unlockedQuestion.includes(char)) {
+      if (char && questionReady(char, found, next.seenLayer) && !next.unlockedQuestion.includes(char)) {
         next.unlockedQuestion = [...next.unlockedQuestion, char];
       }
       save(next);
       return next;
     });
     return result;
-  }, []);
-
-  const markQuestion = useCallback((id: CharacterId) => {
-    setProgress((p) => {
-      if (p.unlockedQuestion.includes(id)) return p;
-      const next = { ...p, unlockedQuestion: [...p.unlockedQuestion, id] };
-      save(next);
-      return next;
-    });
   }, []);
 
   const markFinished = useCallback((id: CharacterId) => {
@@ -109,8 +102,14 @@ export function GameProvider({ children }: { children: ReactNode }) {
 
   const canAsk = useCallback(
     (id: CharacterId) =>
-      progress.unlockedQuestion.includes(id) || questionReady(id, foundSet),
-    [progress.unlockedQuestion, foundSet],
+      progress.unlockedQuestion.includes(id) ||
+      questionReady(id, foundSet, progress.seenLayer),
+    [progress.unlockedQuestion, progress.seenLayer, foundSet],
+  );
+
+  const confirmedLayer = useCallback(
+    (id: string) => (id in progress.seenLayer ? progress.seenLayer[id] : -1),
+    [progress.seenLayer],
   );
 
   const value = useMemo(
@@ -118,13 +117,13 @@ export function GameProvider({ children }: { children: ReactNode }) {
       progress,
       foundSet,
       markEntered,
-      findClue,
-      markQuestion,
+      recordClue,
       markFinished,
       reset,
       canAsk,
+      confirmedLayer,
     }),
-    [progress, foundSet, markEntered, findClue, markQuestion, markFinished, reset, canAsk],
+    [progress, foundSet, markEntered, recordClue, markFinished, reset, canAsk, confirmedLayer],
   );
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;

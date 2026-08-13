@@ -8,9 +8,10 @@ export default function EpilogueScene() {
   const nav = useNavigate();
   const { reset } = useGame();
   const [step, setStep] = useState(0);
-  const done = step >= EPILOGUE.length;
+  const shown = step + 1;
+  const done = shown >= EPILOGUE.length;
 
-  const advance = () => {
+  const next = () => {
     if (!done) {
       sfx("page");
       setStep((s) => s + 1);
@@ -20,17 +21,17 @@ export default function EpilogueScene() {
   };
 
   return (
-    <section className="scene epilogue-scene" onClick={advance}>
+    <section className="scene epilogue-scene">
       <p className="kicker">SEOUL · 2026</p>
       <div className="q-beats">
-        {EPILOGUE.slice(0, step).map((t, i) => (
+        {EPILOGUE.slice(0, shown).map((t, i) => (
           <p key={i} className="beat">
             {t}
           </p>
         ))}
       </div>
-      {done && (
-        <div className="epi-actions" onClick={(e) => e.stopPropagation()}>
+      {done ? (
+        <div className="epi-actions">
           <button type="button" className="select-enter" onClick={() => nav("/select")}>
             현장으로
           </button>
@@ -45,8 +46,11 @@ export default function EpilogueScene() {
             기록을 지운다
           </button>
         </div>
+      ) : (
+        <button type="button" className="record-btn" onClick={next}>
+          다음
+        </button>
       )}
-      {!done && <p className="q-hint">눌러서 읽는다</p>}
     </section>
   );
 }

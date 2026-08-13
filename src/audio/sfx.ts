@@ -1,4 +1,9 @@
 let ctx: AudioContext | null = null;
+let sfxMuted = false;
+
+export function setSfxMuted(on: boolean) {
+  sfxMuted = on;
+}
 
 function ac() {
   if (!ctx) ctx = new AudioContext();
@@ -18,6 +23,7 @@ export function resumeAudio() {
 }
 
 export function sfx(kind: "engine" | "key" | "click" | "keys" | "notify" | "page" | "cup" | "whoosh" | "glitch") {
+  if (sfxMuted) return;
   const c = ac();
   const t = c.currentTime;
 

@@ -1,24 +1,24 @@
 import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCharacter } from "../game/characters";
-import { cluesFor, inferencesFor, isRevealed, layerIndex } from "../game/clues";
+import { cluesFor, inferencesFor, isRevealed } from "../game/clues";
 import { useGame } from "../store/GameProvider";
 
 export default function RecordScene() {
   const { id } = useParams();
   const nav = useNavigate();
   const ch = getCharacter(id);
-  const { foundSet, canAsk } = useGame();
+  const { foundSet, canAsk, progress } = useGame();
 
   const entries = useMemo(() => {
     if (!ch) return [];
     return cluesFor(ch.id)
       .filter((c) => foundSet.has(c.id) && isRevealed(c, foundSet))
       .map((c) => {
-        const layer = layerIndex(c, foundSet);
+        const layer = Math.max(0, Math.min(progress.seenLayer[c.id] ?? 0, 2));
         return { clue: c, layer, reading: c.layers[layer], first: c.layers[0] };
       });
-  }, [ch, foundSet]);
+  }, [ch, foundSet, progress.seenLayer]);
 
   const inferences = useMemo(() => {
     if (!ch) return [];
@@ -39,8 +39,8 @@ export default function RecordScene() {
 
       <div className="record-body">
         <section>
-          <h3>본 것</h3>
-          {entries.length === 0 && <p className="empty">아직 조사한 물건이 없다.</p>}
+          <h3>기록한 것</h3>
+          {entries.length === 0 && <p className="empty">아직 기록한 물건이 없다. 열기만 해서는 남지 않는다.</p>}
           <ul className="record-list">
             {entries.map(({ clue, layer, reading, first }) => (
               <li key={clue.id} onClick={() => nav(`/room/${ch.id}/clue/${clue.id}`)}>
@@ -61,7 +61,7 @@ export default function RecordScene() {
         <section>
           <h3>겹쳐 읽은 것</h3>
           {inferences.length === 0 && (
-            <p className="empty">단서를 더 모으면 관계가 보이기 시작한다.</p>
+            <p className="empty">같은 사람을 가리키는 물건이 두 개 이상 기록되면 여기 생긴다.</p>
           )}
           <ul className="record-list infer">
             {inferences.map((inf) => (
@@ -74,10 +74,12 @@ export default function RecordScene() {
         </section>
       </div>
 
-      {canAsk(ch.id) && (
+      {canAsk(ch.id) ? (
         <button type="button" className="ask-btn fixed" onClick={() => nav(`/room/${ch.id}/question`)}>
           나는 이 여자의 인생에서 대체 어떤 사람이었는가?
         </button>
+      ) : (
+        <p className="ask-wait">질문은 기록을 충분히 다시 읽은 뒤에만 열 수 있다.</p>
       )}
     </section>
   );

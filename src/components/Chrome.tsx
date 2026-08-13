@@ -1,5 +1,4 @@
 import { useAudio } from "../audio/AudioProvider";
-import { sfx } from "../audio/sfx";
 
 export function Chrome() {
   const { muted, toggleMute } = useAudio();
@@ -7,13 +6,10 @@ export function Chrome() {
     <button
       type="button"
       className="mute-btn"
-      aria-label={muted ? "소리 켜기" : "소리 끄기"}
-      onClick={() => {
-        sfx("click");
-        toggleMute();
-      }}
+      aria-label={muted ? "소리 켬" : "소리 끔"}
+      onClick={toggleMute}
     >
-      {muted ? "소리 끔" : "소리"}
+      {muted ? "소리 켬" : "소리 끔"}
     </button>
   );
 }
