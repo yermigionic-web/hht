@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CHARACTERS, ORDER } from "../game/characters";
+import { ThemePatch } from "../components/ThemePatch";
 import { useAudio } from "../audio/AudioProvider";
 import { enterSfx, switchSfx, sfx } from "../audio/sfx";
 import { useGame } from "../store/GameProvider";
@@ -67,6 +68,7 @@ export default function SelectScene() {
         />
       ))}
       <div className="select-fx" aria-hidden />
+      <ThemePatch key={ch.id} id={ch.id} />
 
       <header className="select-top">
         <p className="kicker">들어갈 방</p>
@@ -89,7 +91,12 @@ export default function SelectScene() {
                 className={`figure-slot ${active ? "active" : "idle"} side-${wrapped}`}
               >
                 <div className="figure-spin">
-                  <Standing src={c.figure} name={c.name} />
+                  <Standing
+                    video={c.video}
+                    image={c.figure}
+                    name={c.name}
+                    active={active}
+                  />
                 </div>
               </div>
             );
@@ -142,17 +149,59 @@ export default function SelectScene() {
   );
 }
 
-function Standing({ src, name }: { src: string; name: string }) {
-  const [missing, setMissing] = useState(false);
+function Standing({
+  video,
+  image,
+  name,
+  active,
+}: {
+  video: string;
+  image: string;
+  name: string;
+  active: boolean;
+}) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [kind, setKind] = useState<"video" | "image" | "empty">("video");
+
   useEffect(() => {
-    setMissing(false);
-  }, [src]);
-  if (missing) {
+    setKind("video");
+  }, [video, image]);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || kind !== "video") return;
+    if (active) {
+      void el.play().catch(() => setKind("image"));
+    } else {
+      el.pause();
+    }
+  }, [active, kind]);
+
+  if (kind === "empty") {
     return (
       <div className="standing-empty" aria-hidden>
         {name}
       </div>
     );
   }
-  return <img src={src} alt={name} draggable={false} onError={() => setMissing(true)} />;
+  if (kind === "image") {
+    return (
+      <img src={image} alt={name} draggable={false} onError={() => setKind("empty")} />
+    );
+  }
+  return (
+    <video
+      ref={ref}
+      className="standing-video"
+      src={video}
+      poster={image}
+      muted
+      loop
+      playsInline
+      disablePictureInPicture
+      controls={false}
+      preload={active ? "auto" : "metadata"}
+      onError={() => setKind("image")}
+    />
+  );
 }

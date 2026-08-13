@@ -3,6 +3,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { getCharacter } from "../game/characters";
 import { cluesFor, inferencesFor } from "../game/clues";
 import { REALIZATIONS } from "../game/realizations";
+import { ThemePatch } from "../components/ThemePatch";
 import { sfx } from "../audio/sfx";
 import { useGame } from "../store/GameProvider";
 
@@ -51,6 +52,7 @@ export default function QuestionScene() {
 
   return (
     <section className={`scene question-scene is-${ch.id}`} data-character={ch.id}>
+      <ThemePatch id={ch.id} />
       <p className="kicker">
         {ch.district} · {ch.place}
       </p>

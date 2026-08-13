@@ -1,0 +1,836 @@
+/* Character theme patches — three separate systems, not three accent colors.
+   안나현: 차 키 / 엔진 / 금속 / 헤드라이트 (합정 도로를 보는 딜러)
+   서유상: 키보드 / 그리드 / 모니터 / 미세 글리치 (공덕 분석가)
+   반영:   책 / 나무 / 종이 / 정적 UI (연희동 십사 년)
+   Overlay never covers standing mp4/png. */
+
+/* ── tokens ── */
+[data-character="nahyeon"],
+.is-nahyeon {
+  --accent: #e08a4a;
+  --fg: #f3e6d4;
+  --muted: rgba(224, 168, 110, 0.62);
+  --line: rgba(201, 160, 112, 0.42);
+  --patch-metal: #c9a070;
+  --patch-ink: #140c08;
+}
+
+[data-character="yousang"],
+.is-yousang {
+  --accent: #8eb4c8;
+  --fg: #d7e8f0;
+  --muted: rgba(142, 180, 200, 0.62);
+  --line: rgba(142, 180, 200, 0.32);
+  --patch-metal: #8eb4c8;
+  --patch-ink: #070b10;
+  font-variant-numeric: tabular-nums;
+}
+
+[data-character="young"],
+.is-young {
+  --accent: #c4a06a;
+  --fg: #efe4d0;
+  --muted: rgba(196, 160, 106, 0.68);
+  --line: rgba(138, 106, 64, 0.45);
+  --patch-metal: #8a6a40;
+  --patch-ink: #2a2218;
+}
+
+.is-yousang,
+.is-yousang button {
+  font-family: var(--mono);
+}
+.is-young,
+.is-young button {
+  font-family: var(--serif);
+}
+
+/* mute inherits the room it sits over */
+.app:has([data-character="nahyeon"]) .mute-btn {
+  font-family: var(--font);
+  letter-spacing: 0.08em;
+  border-radius: 0;
+  transform: skewX(-8deg);
+  border-color: #c9a070;
+  background: linear-gradient(180deg, rgba(40, 28, 16, 0.82), rgba(12, 8, 6, 0.82));
+  color: #e8c89a;
+  backdrop-filter: none;
+}
+.app:has([data-character="yousang"]) .mute-btn {
+  font-family: var(--mono);
+  letter-spacing: 0.22em;
+  border-radius: 0;
+  border-color: #8eb4c8;
+  background: #0b1014;
+  color: #8eb4c8;
+  backdrop-filter: none;
+}
+.app:has([data-character="young"]) .mute-btn {
+  font-family: var(--serif);
+  letter-spacing: 0.12em;
+  border-radius: 0;
+  border-color: #8a6a40;
+  background: #efe6d4;
+  color: #2a2218;
+  backdrop-filter: none;
+}
+
+/* ── overlay (edges only) ── */
+.theme-patch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+  -webkit-mask-image: radial-gradient(ellipse 46% 58% at 50% 40%, transparent 58%, #000 76%);
+  mask-image: radial-gradient(ellipse 46% 58% at 50% 40%, transparent 58%, #000 76%);
+}
+.room-scene .theme-patch,
+.clue-scene .theme-patch,
+.record-scene .theme-patch,
+.question-scene .theme-patch {
+  z-index: 4;
+  -webkit-mask-image: radial-gradient(ellipse 78% 72% at 50% 48%, transparent 52%, #000 88%);
+  mask-image: radial-gradient(ellipse 78% 72% at 50% 48%, transparent 52%, #000 88%);
+}
+.theme-patch i {
+  display: block;
+  position: absolute;
+}
+
+.tp-corner {
+  width: 42px;
+  height: 42px;
+  z-index: 2;
+}
+.tp-corner.tl { top: 10px; left: 10px; }
+.tp-corner.tr { top: 10px; right: 10px; }
+.tp-corner.bl { bottom: 10px; left: 10px; }
+.tp-corner.br { bottom: 10px; right: 10px; }
+
+/* 안나현 — chassis brackets + headlight wash + dash ticks */
+.theme-nahyeon .tp-corner {
+  border-color: #c9a070;
+  border-style: solid;
+  border-width: 0;
+}
+.theme-nahyeon .tp-corner.tl { border-top-width: 3px; border-left-width: 3px; }
+.theme-nahyeon .tp-corner.tr { border-top-width: 3px; border-right-width: 3px; }
+.theme-nahyeon .tp-corner.bl { border-bottom-width: 3px; border-left-width: 3px; }
+.theme-nahyeon .tp-corner.br { border-bottom-width: 3px; border-right-width: 3px; }
+.theme-nahyeon .tp-wash {
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 140, 40, 0.28), transparent 22%, transparent 78%, rgba(255, 140, 40, 0.28)),
+    linear-gradient(105deg, transparent 40%, rgba(255, 190, 80, 0.35) 50%, transparent 60%);
+  mix-blend-mode: screen;
+  animation: headlights 1.05s ease-out 1;
+}
+.theme-nahyeon .tp-dash {
+  left: 12%;
+  right: 12%;
+  bottom: 7%;
+  height: 18px;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #c9a070 0 2px,
+      transparent 2px 18px
+    );
+  opacity: 0.55;
+  clip-path: polygon(0 60%, 8% 0, 92% 0, 100% 60%, 92% 100%, 8% 100%);
+}
+.theme-nahyeon .tp-scan,
+.theme-nahyeon .tp-grain { display: none; }
+
+/* 서유상 — monitor grid + scan + bezel */
+.theme-yousang .tp-corner {
+  width: 28px;
+  height: 28px;
+  background: #8eb4c8;
+  opacity: 0.85;
+}
+.theme-yousang .tp-corner.tl { clip-path: polygon(0 0, 100% 0, 0 100%); }
+.theme-yousang .tp-corner.tr { clip-path: polygon(0 0, 100% 0, 100% 100%); }
+.theme-yousang .tp-corner.bl { clip-path: polygon(0 0, 0 100%, 100% 100%); }
+.theme-yousang .tp-corner.br { clip-path: polygon(100% 0, 0 100%, 100% 100%); }
+.theme-yousang .tp-wash {
+  inset: 0;
+  background:
+    repeating-linear-gradient(to right, transparent 0 63px, rgba(170, 210, 230, 0.14) 63px 64px),
+    repeating-linear-gradient(to bottom, transparent 0 21px, rgba(170, 210, 230, 0.08) 21px 22px);
+}
+.theme-yousang .tp-scan {
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: rgba(190, 230, 255, 0.45);
+  mix-blend-mode: screen;
+  animation: monitor-scan 2.4s linear infinite;
+}
+.theme-yousang .tp-dash {
+  top: 8px;
+  left: 56px;
+  right: 56px;
+  height: 1px;
+  background: #8eb4c8;
+  opacity: 0.45;
+}
+.theme-yousang .tp-grain { display: none; }
+.select-scene.is-yousang .stage-rig {
+  animation: micro-glitch 0.2s steps(2) 1;
+}
+
+/* 반영 — wood joints + paper fiber, no motion */
+.theme-young .tp-corner {
+  width: 54px;
+  height: 54px;
+  border: 0;
+  background:
+    linear-gradient(#6a4428, #3c2616) 0 0 / 100% 8px no-repeat,
+    linear-gradient(#6a4428, #3c2616) 0 0 / 8px 100% no-repeat;
+  opacity: 0.9;
+}
+.theme-young .tp-corner.tr {
+  background:
+    linear-gradient(#6a4428, #3c2616) 0 0 / 100% 8px no-repeat,
+    linear-gradient(#6a4428, #3c2616) 100% 0 / 8px 100% no-repeat;
+}
+.theme-young .tp-corner.bl {
+  background:
+    linear-gradient(#6a4428, #3c2616) 0 100% / 100% 8px no-repeat,
+    linear-gradient(#6a4428, #3c2616) 0 0 / 8px 100% no-repeat;
+}
+.theme-young .tp-corner.br {
+  background:
+    linear-gradient(#6a4428, #3c2616) 0 100% / 100% 8px no-repeat,
+    linear-gradient(#6a4428, #3c2616) 100% 0 / 8px 100% no-repeat;
+}
+.theme-young .tp-wash {
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(196, 140, 70, 0.22), transparent 46%);
+}
+.theme-young .tp-grain {
+  inset: 0;
+  opacity: 0.2;
+  mix-blend-mode: multiply;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 2px, rgba(90, 55, 25, 0.22) 2px 3px),
+    repeating-linear-gradient(90deg, transparent 0 3px, rgba(90, 55, 25, 0.08) 3px 4px);
+}
+.theme-young .tp-dash {
+  left: 10%;
+  right: 10%;
+  bottom: 9%;
+  height: 2px;
+  background: #8a6a40;
+  opacity: 0.4;
+}
+.theme-young .tp-scan { display: none; }
+
+@keyframes headlights {
+  from { transform: translateX(-58%) skewX(-14deg); opacity: 0; }
+  32% { opacity: 1; }
+  to { transform: translateX(58%) skewX(-14deg); opacity: 0; }
+}
+@keyframes monitor-scan {
+  from { transform: translateY(0); opacity: 0.7; }
+  to { transform: translateY(70vh); opacity: 0; }
+}
+@keyframes micro-glitch {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-4px, 1px); }
+  50% { transform: translate(3px, -1px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes jolt {
+  0% { transform: skewX(-12deg) translateX(0); }
+  40% { transform: skewX(-16deg) translateX(-5px); }
+  70% { transform: skewX(-8deg) translateX(4px); }
+  100% { transform: skewX(-12deg) translateX(0); }
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ── select: backgrounds / stage / type ── */
+.select-scene.is-nahyeon .select-bg.on {
+  filter: saturate(1.08) brightness(0.48) contrast(1.12);
+}
+.select-scene.is-yousang .select-bg.on {
+  filter: saturate(0.45) brightness(0.56) contrast(1.08);
+}
+.select-scene.is-young .select-bg.on {
+  filter: saturate(0.82) brightness(0.6) sepia(0.18);
+}
+
+.select-scene.is-nahyeon .select-fx {
+  background:
+    radial-gradient(ellipse at 50% 70%, transparent 28%, rgba(0, 0, 0, 0.78) 86%),
+    linear-gradient(90deg, rgba(80, 30, 8, 0.45), transparent 18%, transparent 82%, rgba(80, 30, 8, 0.45)),
+    linear-gradient(to top, #0a0705 0%, transparent 30%);
+}
+.select-scene.is-yousang .select-fx {
+  background:
+    radial-gradient(ellipse at 50% 70%, transparent 30%, rgba(4, 8, 12, 0.8) 86%),
+    linear-gradient(to top, #070b10 0%, transparent 28%);
+}
+.select-scene.is-young .select-fx {
+  background:
+    radial-gradient(ellipse at 50% 70%, transparent 30%, rgba(20, 12, 6, 0.82) 86%),
+    linear-gradient(to top, #120e0a 0%, transparent 32%);
+}
+
+.select-scene.is-nahyeon .stage-ring {
+  border-radius: 50%;
+  background:
+    repeating-conic-gradient(from 0deg, #4a4a50 0deg 5deg, #161618 5deg 10deg),
+    radial-gradient(circle at 50% 50%, rgba(200, 90, 40, 0.5), transparent 62%);
+  box-shadow:
+    0 40px 50px rgba(0, 0, 0, 0.7),
+    inset 0 0 18px rgba(255, 160, 80, 0.28);
+}
+.select-scene.is-yousang .stage-ring {
+  border-radius: 6px;
+  background: linear-gradient(180deg, #c5d5de 0%, #6d8490 40%, #12181e 100%);
+  opacity: 0.85;
+  box-shadow:
+    0 0 0 2px #8eb4c8,
+    0 0 0 6px #0b1014;
+}
+.select-scene.is-young .stage-ring {
+  border-radius: 50%;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, #6a4428 0 1px, #3c2616 1px 8px);
+  box-shadow:
+    0 28px 36px rgba(20, 10, 0, 0.55),
+    inset 0 0 22px rgba(90, 50, 20, 0.55);
+}
+
+.select-scene.is-nahyeon .select-name {
+  letter-spacing: 0.02em;
+  font-weight: 700;
+  text-shadow: 0 2px 0 #140c08, 0 0 24px rgba(224, 138, 74, 0.35);
+}
+.select-scene.is-nahyeon .select-name::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 4px;
+  margin: 8px auto 0;
+  background: linear-gradient(90deg, #c9a070, #e08a4a, #c9a070);
+  transform: skewX(-24deg);
+}
+.select-scene.is-yousang .select-name {
+  font-family: var(--mono);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  font-size: clamp(26px, 4.8vw, 44px);
+}
+.select-scene.is-yousang .select-name::after {
+  content: "▌";
+  margin-left: 6px;
+  font-size: 0.62em;
+  animation: blink 1.05s steps(1) infinite;
+}
+.select-scene.is-young .select-name {
+  font-family: var(--serif);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+}
+.select-scene.is-young .select-name::before,
+.select-scene.is-young .select-name::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 1px;
+  margin: 10px auto;
+  background: #8a6a40;
+}
+
+.select-scene.is-nahyeon .select-place,
+.select-scene.is-nahyeon .select-job {
+  letter-spacing: 0.22em;
+  text-transform: none;
+}
+.select-scene.is-yousang .select-place,
+.select-scene.is-yousang .select-job,
+.select-scene.is-yousang .select-why,
+.select-scene.is-yousang .kicker {
+  font-family: var(--mono);
+  letter-spacing: 0.12em;
+}
+.select-scene.is-yousang .select-quote {
+  font-family: var(--mono);
+  font-size: 14px;
+}
+.select-scene.is-young .select-place,
+.select-scene.is-young .select-job,
+.select-scene.is-young .select-why,
+.select-scene.is-young .kicker,
+.select-scene.is-young .select-quote {
+  font-family: var(--serif);
+}
+.select-scene.is-young .select-sub {
+  font-family: var(--serif);
+}
+
+.select-scene.is-nahyeon .nav-arrow {
+  border-radius: 2px;
+  transform: rotate(-6deg) skewX(-8deg);
+  border: 1px solid #c9a070;
+  background: linear-gradient(180deg, #d8c8a8, #7a5a32);
+  color: #140c08;
+  box-shadow: 0 0 0 1px #3a2a14, 0 8px 16px #0008;
+}
+.select-scene.is-yousang .nav-arrow {
+  border-radius: 0;
+  width: 48px;
+  height: 32px;
+  font-size: 22px;
+  line-height: 1;
+  border: 2px solid #8eb4c8;
+  background: #0b0f14;
+  color: #8eb4c8;
+  box-shadow: 0 4px 0 #3a4a5a;
+}
+.select-scene.is-young .nav-arrow {
+  border-radius: 0;
+  border: 1px solid #8a6a40;
+  background: #efe6d4;
+  color: #2a2218;
+  box-shadow: 2px 3px 0 #3a2e20;
+}
+
+.select-scene.is-nahyeon .select-enter {
+  transform: skewX(-12deg);
+  border: 1px solid #3a2a14;
+  background: linear-gradient(180deg, #e0c8a0, #8a5a28);
+  color: #140c08;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  box-shadow: inset 0 1px 0 #f4e6c8, 0 7px 0 #3a2a14;
+  animation: jolt 0.32s steps(2) 1;
+}
+.select-scene.is-nahyeon .select-enter:hover {
+  background: #e08a4a;
+  color: #140c08;
+}
+.select-scene.is-yousang .select-enter {
+  border-radius: 0;
+  font-family: var(--mono);
+  letter-spacing: 0.42em;
+  min-width: 196px;
+  background: #12181e;
+  border: 2px solid #8eb4c8;
+  color: #d7e8f0;
+  box-shadow: 0 6px 0 #3a4a5a;
+}
+.select-scene.is-yousang .select-enter:hover {
+  background: #8eb4c8;
+  color: #0b1014;
+}
+.select-scene.is-young .select-enter {
+  font-family: var(--serif);
+  letter-spacing: 0.16em;
+  background: #efe6d4;
+  color: #2a2218;
+  border: 1px solid #8a6a40;
+  box-shadow: 2px 3px 0 #3a2e20;
+  transition: none;
+}
+.select-scene.is-young .select-enter:hover {
+  background: #e4d4b8;
+  color: #2a2218;
+}
+
+.select-scene.is-nahyeon .pip {
+  border-radius: 0;
+  transform: rotate(45deg);
+  width: 8px;
+  height: 8px;
+  border-color: #c9a070;
+}
+.select-scene.is-yousang .pip {
+  border-radius: 0;
+  width: 7px;
+  height: 7px;
+  border-color: #8eb4c8;
+}
+.select-scene.is-young .pip {
+  border-radius: 50%;
+  width: 6px;
+  height: 6px;
+  border-color: #8a6a40;
+}
+
+.select-scene.is-yousang .figure-slot {
+  transition: transform 0.18s linear, opacity 0.18s linear, filter 0.18s linear;
+}
+.select-scene.is-young .figure-slot {
+  transition: opacity 1.2s ease;
+}
+.select-scene.is-young .figure-slot.side--1,
+.select-scene.is-young .figure-slot.side-1 {
+  filter: none;
+  opacity: 0;
+}
+
+/* standing media: never crop or restyle the author's art */
+.figure-slot img,
+.figure-slot .standing-video {
+  object-fit: contain;
+  object-position: center bottom;
+  background: transparent;
+  mix-blend-mode: normal;
+  border: 0;
+  border-radius: 0;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+.figure-slot.active img,
+.figure-slot.active .standing-video {
+  filter: none;
+}
+
+/* ── room ── */
+.room-scene.is-nahyeon .room-shade {
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, transparent 28%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, transparent 18%),
+    linear-gradient(90deg, rgba(180, 60, 16, 0.22), transparent 24%, transparent 76%, rgba(180, 60, 16, 0.22));
+  box-shadow: inset 0 0 140px rgba(180, 60, 20, 0.22);
+}
+.room-scene.is-yousang .room-shade {
+  background:
+    linear-gradient(to top, rgba(0, 0, 0, 0.74) 0%, transparent 28%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.48) 0%, transparent 16%),
+    repeating-linear-gradient(to right, transparent 0 71px, rgba(142, 180, 200, 0.07) 71px 72px);
+}
+.room-scene.is-young .room-shade {
+  background:
+    linear-gradient(to top, rgba(18, 10, 4, 0.78) 0%, transparent 30%),
+    linear-gradient(to bottom, rgba(18, 10, 4, 0.4) 0%, transparent 18%);
+  box-shadow: inset 0 0 120px rgba(40, 22, 8, 0.4);
+}
+
+.room-scene.is-nahyeon .hotspot::after {
+  border-radius: 0;
+  width: 9px;
+  height: 9px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border-color: #c9a070;
+  box-shadow: 0 0 8px rgba(224, 138, 74, 0.55);
+}
+.room-scene.is-yousang .hotspot::after {
+  border-radius: 0;
+  width: 6px;
+  height: 6px;
+  border-color: #8eb4c8;
+  background: transparent;
+}
+.room-scene.is-young .hotspot::after {
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  border-color: #c4a06a;
+  opacity: 0.5;
+}
+
+.room-scene.is-nahyeon .hot-label {
+  transform: translate(-50%, -140%) skewX(-8deg);
+  border-radius: 0;
+  border-color: #c9a070;
+  background: rgba(20, 12, 8, 0.88);
+}
+.room-scene.is-yousang .hot-label {
+  font-family: var(--mono);
+  letter-spacing: 0.14em;
+  border-radius: 0;
+  border-color: #8eb4c8;
+  background: #0b1014;
+}
+.room-scene.is-young .hot-label {
+  font-family: var(--serif);
+  border-radius: 0;
+  border-color: #8a6a40;
+  background: #efe6d4;
+  color: #2a2218;
+}
+
+.room-scene.is-nahyeon .room-hud {
+  transform: rotate(-0.4deg);
+}
+.room-scene.is-nahyeon .room-hud.top {
+  border-bottom: 2px solid rgba(201, 160, 112, 0.35);
+}
+.room-scene.is-yousang .room-hud.top {
+  border-bottom: 1px solid rgba(142, 180, 200, 0.28);
+  font-family: var(--mono);
+  background: linear-gradient(to bottom, rgba(7, 11, 16, 0.55), transparent);
+}
+.room-scene.is-yousang .room-id h2 {
+  font-family: var(--mono);
+  font-size: 16px;
+  letter-spacing: 0.22em;
+}
+.room-scene.is-young .room-hud {
+  font-family: var(--serif);
+}
+.room-scene.is-young .room-id h2 {
+  font-family: var(--serif);
+}
+.room-scene.is-young .room-hud.top {
+  border-bottom: 1px solid rgba(138, 106, 64, 0.35);
+}
+
+.room-scene.is-nahyeon .ask-btn,
+.clue-scene.is-nahyeon .record-btn,
+.record-scene.is-nahyeon .ask-btn,
+.question-scene.is-nahyeon .record-btn {
+  transform: skewX(-8deg);
+  border: 1px solid #3a2a14;
+  background: linear-gradient(180deg, #e0c8a0, #8a5a28);
+  color: #140c08;
+  font-weight: 700;
+  box-shadow: 0 6px 0 #3a2a14;
+}
+.room-scene.is-nahyeon .ask-btn.fixed {
+  transform: translateX(-50%) skewX(-8deg);
+}
+.room-scene.is-yousang .ask-btn,
+.clue-scene.is-yousang .record-btn,
+.record-scene.is-yousang .ask-btn,
+.question-scene.is-yousang .record-btn {
+  border-radius: 0;
+  font-family: var(--mono);
+  letter-spacing: 0.12em;
+  border: 2px solid #8eb4c8;
+  background: #0b1014;
+  box-shadow: 0 5px 0 #3a4a5a;
+}
+.room-scene.is-young .ask-btn,
+.clue-scene.is-young .record-btn,
+.record-scene.is-young .ask-btn,
+.question-scene.is-young .record-btn {
+  font-family: var(--serif);
+  background: #efe6d4;
+  color: #2a2218;
+  border: 1px solid #8a6a40;
+  box-shadow: 2px 3px 0 #3a2e20;
+  transform: none;
+}
+
+.room-scene.is-nahyeon .ghost,
+.clue-scene.is-nahyeon .ghost,
+.record-scene.is-nahyeon .ghost {
+  letter-spacing: 0.08em;
+}
+.room-scene.is-yousang .ghost,
+.clue-scene.is-yousang .ghost,
+.record-scene.is-yousang .ghost {
+  font-family: var(--mono);
+  letter-spacing: 0.16em;
+}
+.room-scene.is-young .ghost,
+.clue-scene.is-young .ghost,
+.record-scene.is-young .ghost {
+  font-family: var(--serif);
+}
+
+/* ── clue / record / question ── */
+.clue-scene.is-nahyeon,
+.record-scene.is-nahyeon,
+.question-scene.is-nahyeon {
+  background: #0c0a09;
+}
+.clue-scene.is-yousang,
+.record-scene.is-yousang,
+.question-scene.is-yousang {
+  background: #070b10;
+}
+.clue-scene.is-young,
+.record-scene.is-young,
+.question-scene.is-young {
+  background: #14100c;
+}
+
+.clue-scene.is-nahyeon .clue-read {
+  transform: skewX(-3deg) rotate(-0.3deg);
+  background: linear-gradient(180deg, #2a221c, #14110f);
+  border: 1px solid #c9a070;
+  border-left-width: 4px;
+  padding: 20px 18px;
+}
+.clue-scene.is-yousang .clue-read {
+  font-family: var(--mono);
+  background: #0b1014;
+  border: 1px solid #8eb4c8;
+  border-left-width: 3px;
+  box-shadow: inset 0 0 0 1px rgba(142, 180, 200, 0.18);
+  padding: 18px 16px;
+}
+.clue-scene.is-yousang .thought {
+  font-family: var(--mono);
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+.clue-scene.is-young .clue-read {
+  background: #efe6d4;
+  color: #2a2218;
+  border: 0;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35), inset 0 0 0 1px #8a6a40;
+  padding: 22px 20px;
+}
+.clue-scene.is-young .thought,
+.clue-scene.is-young .detail,
+.clue-scene.is-young .more,
+.clue-scene.is-young .updated {
+  color: #2a2218;
+}
+.clue-scene.is-young .updated {
+  opacity: 0.75;
+}
+.clue-scene.is-young .layer-trail s {
+  color: #6b6358;
+}
+
+.clue-scene.is-nahyeon .clue-name,
+.record-scene.is-nahyeon .clue-name {
+  letter-spacing: 0.14em;
+  font-weight: 700;
+}
+.clue-scene.is-yousang .clue-name,
+.record-scene.is-yousang .clue-name,
+.clue-scene.is-yousang .layer-pip,
+.record-scene.is-yousang .layer-pip {
+  font-family: var(--mono);
+}
+.clue-scene.is-young .clue-name,
+.record-scene.is-young .clue-name {
+  font-family: var(--serif);
+}
+
+.record-scene.is-nahyeon .record-list li {
+  border-bottom: 1px solid rgba(201, 160, 112, 0.35);
+}
+.record-scene.is-nahyeon .record-list strong::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 8px;
+  background: #c9a070;
+  transform: rotate(45deg);
+}
+.record-scene.is-yousang .record-body {
+  font-family: var(--mono);
+}
+.record-scene.is-yousang .record-list li {
+  border-bottom: 1px dashed rgba(142, 180, 200, 0.35);
+}
+.record-scene.is-yousang h3 {
+  letter-spacing: 0.28em;
+}
+.record-scene.is-young .record-body {
+  font-family: var(--serif);
+}
+.record-scene.is-young .record-list li {
+  border-bottom: 1px solid rgba(138, 106, 64, 0.35);
+  background-image: repeating-linear-gradient(
+    transparent 0 27px,
+    rgba(138, 106, 64, 0.12) 27px 28px
+  );
+}
+
+.question-scene.is-nahyeon .q-beats {
+  border: 1px solid #c9a070;
+  padding: 28px 26px;
+  transform: skewX(-2deg);
+  background: linear-gradient(180deg, rgba(80, 40, 10, 0.28), transparent);
+}
+.question-scene.is-nahyeon .record-btn {
+  margin-top: 22px;
+}
+.question-scene.is-yousang {
+  text-align: left;
+  align-items: stretch;
+}
+.question-scene.is-yousang .kicker,
+.question-scene.is-yousang .q-beats,
+.question-scene.is-yousang .q-gate,
+.question-scene.is-yousang .beat-q {
+  font-family: var(--mono);
+}
+.question-scene.is-yousang .q-beats {
+  border-left: 3px solid #8eb4c8;
+  padding-left: 22px;
+  margin: 0 8vw;
+}
+.question-scene.is-yousang .beat-q {
+  font-size: clamp(16px, 2.6vw, 24px);
+}
+.question-scene.is-yousang .record-btn {
+  margin-left: 8vw;
+  align-self: flex-start;
+}
+.question-scene.is-young .q-beats {
+  background: #efe6d4;
+  color: #2a2218;
+  padding: 36px 32px 32px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4), inset 0 0 0 1px #8a6a40;
+  max-width: 640px;
+}
+.question-scene.is-young .kicker,
+.question-scene.is-young .beat,
+.question-scene.is-young .beat-q,
+.question-scene.is-young .q-gate,
+.question-scene.is-young .last {
+  font-family: var(--serif);
+  color: #2a2218;
+}
+.question-scene.is-young .last {
+  color: #6a4428;
+}
+.question-scene.is-young .q-gate {
+  opacity: 0.7;
+}
+
+.clue-scene.is-nahyeon .phone {
+  border-radius: 10px;
+  border-color: #3a2a14;
+  box-shadow: 0 0 0 1px #c9a070, 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+.clue-scene.is-yousang .phone {
+  border-radius: 0;
+  border-width: 4px;
+  border-color: #8eb4c8;
+  background: #0b1014;
+}
+.clue-scene.is-young .phone {
+  border-color: #6a4428;
+  background: #1a1612;
+}
+
+.clue-hud,
+.record-body,
+.question-scene .kicker,
+.question-scene .q-beats,
+.question-scene .record-btn,
+.question-scene .q-gate {
+  position: relative;
+  z-index: 5;
+}
+
+@media (max-width: 860px) {
+  .theme-patch {
+    -webkit-mask-image: radial-gradient(ellipse 70% 50% at 50% 38%, transparent 52%, #000 78%);
+    mask-image: radial-gradient(ellipse 70% 50% at 50% 38%, transparent 52%, #000 78%);
+  }
+  .question-scene.is-yousang .q-beats,
+  .question-scene.is-yousang .record-btn {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}

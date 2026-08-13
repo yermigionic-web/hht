@@ -12,6 +12,7 @@ export interface Character {
   enterLabel: string;
   bgm: string;
   figure: string;
+  video: string;
   room: string;
   backdrop: string;
   stage: string;
@@ -33,6 +34,7 @@ export const CHARACTERS: Character[] = [
     enterLabel: "문 열어",
     bgm: asset("audio/nahyeon.mp3"),
     figure: asset("standing/nahyeon.png"),
+    video: asset("standing/nahyeon.mp4"),
     room: asset("images/nahyeon_room.png"),
     backdrop: asset("images/nahyeon_bg.png"),
     stage: "이미 서로 선택한 사이인데, 왜 내가 다시 경쟁해야 하지?",
@@ -52,6 +54,7 @@ export const CHARACTERS: Character[] = [
     enterLabel: "ENTER",
     bgm: asset("audio/yousang.mp3"),
     figure: asset("standing/yousang.png"),
+    video: asset("standing/yousang.mp4"),
     room: asset("images/yousang_room.png"),
     backdrop: asset("images/yousang_bg.png"),
     stage: "네가 좋아할 사람이 되면, 그때는 나를 선택해줄까?",
@@ -71,6 +74,7 @@ export const CHARACTERS: Character[] = [
     enterLabel: "들어가기",
     bgm: asset("audio/young.mp3"),
     figure: asset("standing/young.png"),
+    video: asset("standing/young.mp4"),
     room: asset("images/young_room.png"),
     backdrop: asset("images/young_bg.png"),
     stage: "선택받을 필요가 없어. 너는 원래 내 인생 안에 있었으니까.",

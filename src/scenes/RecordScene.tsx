@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getCharacter } from "../game/characters";
 import { cluesFor, inferencesFor, isRevealed } from "../game/clues";
+import { ThemePatch } from "../components/ThemePatch";
 import { useGame } from "../store/GameProvider";
 
 export default function RecordScene() {
@@ -29,6 +30,7 @@ export default function RecordScene() {
 
   return (
     <section className={`scene record-scene is-${ch.id}`} data-character={ch.id}>
+      <ThemePatch id={ch.id} />
       <header className="clue-hud">
         <button type="button" className="ghost" onClick={() => nav(`/room/${ch.id}`)}>
           방으로
