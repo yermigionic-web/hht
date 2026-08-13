@@ -18,6 +18,7 @@ export interface Character {
   premise: string;
   desire: string;
   fear: string;
+  reason: string;
 }
 
 export const CHARACTERS: Character[] = [
@@ -38,6 +39,7 @@ export const CHARACTERS: Character[] = [
     premise: "우리는 이미 서로 선택했다.",
     desire: "네 생활에서 가장 필요한 사람이 되고 싶다.",
     fear: "다른 사람이 너에게 더 필요한 사람이 되는 것.",
+    reason: "어두운 건 무드가 아니다. 창가에서 피우고, 아래 도로를 보기 때문이다.",
   },
   {
     id: "yousang",
@@ -56,6 +58,7 @@ export const CHARACTERS: Character[] = [
     premise: "아직 선택받아야 한다.",
     desire: "네가 나를 고르기를.",
     fear: "진짜 나는 네 취향이 아닐 가능성.",
+    reason: "정렬은 취향이 아니라 성격이다. 무너진 자리만 네 흔적이다.",
   },
   {
     id: "young",
@@ -74,6 +77,7 @@ export const CHARACTERS: Character[] = [
     premise: "선택이라는 과정 자체가 필요 없다.",
     desire: "네가 계속 이 삶 안에 있기를.",
     fear: "나 없이도 네가 안정적으로 행복해지는 것.",
+    reason: "편해 보이는 건 연출이 아니다. 십사 년 동안 네가 여기로 왔기 때문이다.",
   },
 ];
 

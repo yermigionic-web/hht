@@ -69,8 +69,8 @@ export default function SelectScene() {
       <div className="select-fx" aria-hidden />
 
       <header className="select-top">
-        <p className="kicker">현장 선택</p>
-        <p className="select-sub">공략 상대가 아니다. 들어갈 방이다.</p>
+        <p className="kicker">들어갈 방</p>
+        <p className="select-sub">상대를 고르는 화면이 아니다. 남은 생활의 현장이다.</p>
       </header>
 
       <div className="stage-world">
@@ -96,7 +96,6 @@ export default function SelectScene() {
           })}
           <div className="stage-plate">
             <div className="stage-ring" />
-            <div className="stage-light" />
           </div>
         </div>
 
@@ -113,6 +112,7 @@ export default function SelectScene() {
         <p className="select-job">
           {ch.age} · {ch.job}
         </p>
+        <p className="select-why">{ch.reason}</p>
         <blockquote className="select-quote">“{ch.quote}”</blockquote>
         <button type="button" className="select-enter" onClick={enter}>
           {ch.enterLabel}

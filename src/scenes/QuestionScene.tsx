@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useMemo, useState } from "react";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { getCharacter } from "../game/characters";
+import { cluesFor, inferencesFor } from "../game/clues";
 import { REALIZATIONS } from "../game/realizations";
 import { sfx } from "../audio/sfx";
 import { useGame } from "../store/GameProvider";
@@ -9,44 +10,66 @@ export default function QuestionScene() {
   const { id } = useParams();
   const nav = useNavigate();
   const ch = getCharacter(id);
-  const { markFinished, progress } = useGame();
+  const { markFinished, progress, canAsk, foundSet } = useGame();
   const [step, setStep] = useState(0);
 
-  if (!ch) return null;
-  const data = REALIZATIONS[ch.id];
-  const total = data.beats.length + 1;
-  const done = step >= total;
+  const lines = useMemo(() => {
+    if (!ch) return [];
+    const seen = progress.seenLayer;
+    const evidence = cluesFor(ch.id)
+      .filter((c) => foundSet.has(c.id) && (seen[c.id] ?? -1) >= 0)
+      .map((c) => {
+        const layer = Math.min(seen[c.id] ?? 0, 2);
+        return `${c.name} — ${c.layers[layer].thought}`;
+      });
+    const inf = inferencesFor(ch.id)
+      .filter((i) => i.require.every((r) => foundSet.has(r)))
+      .map((i) => i.text);
+    const data = REALIZATIONS[ch.id];
+    return [data.question, ...evidence, ...inf, `“${data.last}”`];
+  }, [ch, foundSet, progress.seenLayer]);
 
-  const advance = () => {
+  if (!ch) return null;
+  if (!canAsk(ch.id) && !progress.finished.includes(ch.id)) {
+    return <Navigate to={`/room/${ch.id}`} replace />;
+  }
+
+  const shown = step + 1;
+  const done = shown >= lines.length;
+
+  const next = () => {
     if (!done) {
       sfx(ch.id === "young" ? "page" : ch.id === "yousang" ? "click" : "key");
-      const next = step + 1;
-      setStep(next);
-      if (next >= total) markFinished(ch.id);
+      const n = step + 1;
+      setStep(n);
+      if (n + 1 >= lines.length) markFinished(ch.id);
       return;
     }
-    if (progress.finished.length + (progress.finished.includes(ch.id) ? 0 : 1) >= 3) {
-      nav("/epilogue");
-      return;
-    }
-    nav("/select");
+    if (progress.finished.length >= 3) nav("/epilogue");
+    else nav("/select");
   };
 
   return (
-    <section className={`scene question-scene is-${ch.id}`} data-character={ch.id} onClick={advance}>
-      <p className="kicker">{ch.district}</p>
-      <h2 className="q-title">{data.question}</h2>
-
+    <section className={`scene question-scene is-${ch.id}`} data-character={ch.id}>
+      <p className="kicker">
+        {ch.district} · {ch.place}
+      </p>
       <div className="q-beats">
-        {data.beats.slice(0, Math.min(step, data.beats.length)).map((b, i) => (
-          <p key={i} className="beat">
-            {b.text}
+        {lines.slice(0, shown).map((text, i) => (
+          <p
+            key={i}
+            className={`beat ${i === 0 ? "beat-q" : ""} ${i === lines.length - 1 && done ? "last" : ""}`}
+          >
+            {text}
           </p>
         ))}
-        {step > data.beats.length && <p className="beat last">“{data.last}”</p>}
+        {step === 0 && (
+          <p className="q-gate">열어 기록한 물건만 이 질문에 답한다. 건너뛸 수 없다.</p>
+        )}
       </div>
-
-      <p className="q-hint">{done ? "현장을 나온다" : "눌러서 읽는다"}</p>
+      <button type="button" className="record-btn" onClick={next}>
+        {step === 0 ? "기록을 펼친다" : done ? "현장을 나온다" : "다음 기록"}
+      </button>
     </section>
   );
 }

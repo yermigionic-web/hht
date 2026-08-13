@@ -1344,9 +1344,14 @@ export function isRevealed(clue: Clue, found: Set<string>): boolean {
   return clue.revealAfter.every((id) => found.has(id));
 }
 
-export function questionReady(characterId: string, found: Set<string>): boolean {
-  const mine = cluesFor(characterId).filter((c) => isRevealed(c, found));
-  const foundMine = mine.filter((c) => found.has(c.id));
-  const reinterpreted = foundMine.filter((c) => layerIndex(c, found) >= 1).length;
-  return foundMine.length >= 6 && reinterpreted >= 3;
+export function questionReady(
+  characterId: string,
+  found: Set<string>,
+  seenLayer: Record<string, number>,
+): boolean {
+  const mine = cluesFor(characterId);
+  const recorded = mine.filter((c) => found.has(c.id) && seenLayer[c.id] !== undefined);
+  const reread = recorded.filter((c) => (seenLayer[c.id] ?? 0) >= 1);
+  const inf = inferencesFor(characterId).filter((i) => i.require.every((id) => found.has(id)));
+  return recorded.length >= 7 && reread.length >= 3 && inf.length >= 2;
 }

@@ -11,9 +11,8 @@ export default function RoomScene() {
   const nav = useNavigate();
   const ch = getCharacter(id);
   const { playBgm, unlock } = useAudio();
-  const { foundSet, markEntered, canAsk, progress } = useGame();
+  const { foundSet, markEntered, canAsk, confirmedLayer } = useGame();
   const [cursor, setCursor] = useState<{ x: number; y: number; name: string } | null>(null);
-  const [par, setPar] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     if (!ch) return;
@@ -35,33 +34,15 @@ export default function RoomScene() {
 
   return (
     <section className={`scene room-scene is-${ch.id}`} data-character={ch.id}>
-      <div
-        className="room-plate"
-        onMouseMove={(e) => {
-          const r = e.currentTarget.getBoundingClientRect();
-          setPar({
-            x: ((e.clientX - r.left) / r.width - 0.5) * 12,
-            y: ((e.clientY - r.top) / r.height - 0.5) * 8,
-          });
-        }}
-        onMouseLeave={() => {
-          setCursor(null);
-          setPar({ x: 0, y: 0 });
-        }}
-      >
-        <img
-          className="room-art"
-          src={ch.room}
-          alt={`${ch.name}의 방`}
-          style={{ transform: `scale(1.06) translate(${par.x}px, ${par.y}px)` }}
-          draggable={false}
-        />
+      <div className="room-plate">
+        <img className="room-art" src={ch.room} alt={`${ch.name}의 방`} draggable={false} />
         <div className="room-shade" />
 
         {visible.map((clue) => {
-          const found = foundSet.has(clue.id);
           const layer = layerIndex(clue, foundSet);
-          const updated = found && layer > (progress.seenLayer[clue.id] ?? 0);
+          const stored = confirmedLayer(clue.id);
+          const found = stored >= 0;
+          const updated = found && layer > stored;
           return (
             <button
               key={clue.id}
@@ -82,6 +63,7 @@ export default function RoomScene() {
                   name: clue.name,
                 });
               }}
+              onMouseLeave={() => setCursor(null)}
               onClick={() => {
                 sfx(ch.id === "nahyeon" ? "key" : ch.id === "yousang" ? "click" : "page");
                 nav(`/room/${ch.id}/clue/${clue.id}`);
@@ -114,8 +96,10 @@ export default function RoomScene() {
       </header>
 
       <footer className="room-hud bottom">
-        <p className="room-hint">물건을 조사한다. 단서는 다시 보면 달라질 수 있다.</p>
-        {canAsk(ch.id) && (
+        <p className="room-hint">
+          물건을 열어 안을 보고 기록한다. 열기만 하면 남지 않는다.
+        </p>
+        {canAsk(ch.id) ? (
           <button
             type="button"
             className="ask-btn"
@@ -126,6 +110,8 @@ export default function RoomScene() {
           >
             나는 이 여자의 인생에서 대체 어떤 사람이었는가?
           </button>
+        ) : (
+          <p className="ask-wait">질문은 기록을 다시 읽은 뒤에만 열린다.</p>
         )}
       </footer>
     </section>
