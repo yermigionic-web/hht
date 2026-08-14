@@ -71,8 +71,8 @@ export default function SelectScene() {
       <ThemePatch key={ch.id} id={ch.id} />
 
       <header className="select-top">
-        <p className="kicker">들어갈 방</p>
-        <p className="select-sub">상대를 고르는 화면이 아니다. 남은 생활의 현장이다.</p>
+        <p className="kicker">문 앞</p>
+        <p className="select-sub">문고리에 밤 공기가 남아 있다.</p>
       </header>
 
       <div className="stage-world">
@@ -142,7 +142,7 @@ export default function SelectScene() {
 
       {progress.finished.length === 3 && (
         <button type="button" className="epilogue-link" onClick={() => nav("/epilogue")}>
-          세 개의 답이 모였다
+          세 집이 닫힌다
         </button>
       )}
     </section>

@@ -13,28 +13,28 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "나현의 키.",
-        detail: "딜러답게 항상 손이 닿는 곳에 둔다. 금속이 빛보다 먼저 보인다.",
+        thought: "금속이 손바닥부터 식는다.",
+        detail: "포브가 무겁다. 딜러 책상 끝, 항상 그 자리. 합정 밤공기가 키링 구멍으로 든다.",
       },
       {
         require: ["nh-phone"],
-        thought: "키가 두 개다.",
-        detail: "키링에 다른 차 키가 하나 더 있다. 나현 명의가 아니다.",
+        thought: "키링이 두 갈래다.",
+        detail: "한쪽만 이빨이 닳았다. 명의란이 비어 있다. 다른 차다.",
       },
       {
         require: ["nh-invoice"],
-        thought: "네 차를 자기 차처럼 관리하고 있다.",
-        detail: "정비 주기, 보험, 주유. 말은 안 한다. 키만 여기 있다.",
+        thought: "정비 주기가 여기 붙어 산다.",
+        detail: "보험. 주유. 말은 안 남긴다. 키만 남긴다. 이미 집 차다.",
       },
     ],
     inspect: {
       kind: "object",
       object: {
-        lead: "검은 키 포브. 무겁다.",
+        lead: "검은 포브. 손안에 남는다.",
         lines: [
-          "수입차 딜러의 손때.",
+          "딜러 손때가 홈에 끼어 있다.",
           "키링이 두 갈래다.",
-          "한쪽은 반질거리고, 한쪽은 더 닳아 있다.",
+          "한쪽만 반질거리고 한쪽은 이빨이 닳았다.",
         ],
       },
     },
@@ -50,28 +50,28 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "비싸지만 과시하지 않는 시계.",
-        detail: "영업용 얼굴. 합정의 밤에 잘 어울린다.",
+        thought: "스테인리스가 테이블을 친다.",
+        detail: "스크래치가 영업 시간이다. 합정 네온이 뒷면에 미끄러진다.",
       },
       {
         require: ["nh-jacket"],
-        thought: "뒷면에 이니셜이 있다.",
-        detail: "나현의 이름이 아니다. 작게, 깊게 새겨져 있다.",
+        thought: "케이스백에 글자가 파여 있다.",
+        detail: "얕지 않다. 이니셜이 이 방 이름과 안 맞는다.",
       },
       {
         require: ["nh-phone", "nh-jacket"],
-        thought: "새기지 말라고 했을 텐데.",
-        detail: "나현은 이미 끝난 문제에 설명을 붙이지 않는다. 시계만 여기 있다.",
+        thought: "새기지 말라고 했다.",
+        detail: "설명이 따라오지 않는다. 시계만 뒤집혀 있다. 끝난 일이다.",
       },
     ],
     inspect: {
       kind: "watch",
       object: {
-        lead: "스테인리스. 스크래치가 몇 개.",
+        lead: "스테인리스. 생채기가 몇 줄.",
         lines: [
-          "브랜드를 숨기듯 뒤집어 놓았다.",
+          "브랜드가 바닥을 본다.",
           "케이스백에 글자가 있다.",
-          "빛에 대면 희미하게 읽힌다.",
+          "네온을 받으면 희미하게 읽힌다.",
         ],
       },
     },
@@ -87,18 +87,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "약국 영수증.",
-        detail: "나현이 아팠나 보다. 합정 온누리약국. 밤 11시.",
+        thought: "약국 영수증이 접혀 식는다.",
+        detail: "합정 온누리. 밤 11시. 잉크가 손가락에 묻는다.",
       },
       {
         require: ["nh-phone"],
-        thought: "이 약은 나현 것이 아니다.",
-        detail: "처방 이름이 낯설다. 나현이 상비약으로 두는 종류가 아니다.",
+        thought: "처방 이름이 이 방과 안 맞는다.",
+        detail: "상비약 칸에 없던 종류다. 봉투가 남의 손 크기다.",
       },
       {
         require: ["nh-bed"],
-        thought: "나현은 네가 먹는 약을 기억하고 있었다.",
-        detail: "떨어지는 주기까지. 사랑 표현이 영수증 형태로 남아 있다.",
+        thought: "떨어지는 주기까지 적어 두었다.",
+        detail: "말은 없다. 영수증만 있다. 손이 먼저 나갔다.",
       },
     ],
     inspect: {
@@ -113,7 +113,7 @@ export const CLUES: Clue[] = [
         ],
         total: "24,900",
         card: "**** 4412",
-        footnote: "고객명란이 비어 있다. 대신 옆에 볼펜으로 이니셜 하나.",
+        footnote: "고객명란이 비어 있다. 옆에 볼펜 이니셜 하나.",
       },
     },
   },
@@ -128,18 +128,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "흡연자.",
-        detail: "창가 재떨이가 가득하다. 라이터는 아직 따뜻하다.",
+        thought: "창가 재가 아직 따뜻하다.",
+        detail: "라이터가 손바닥 온도를 남긴다. 유리 너머로 도로가 젖는다.",
       },
       {
         require: ["nh-window"],
-        thought: "브랜드가 두 개다.",
-        detail: "한쪽 갑만 거의 그대로다. 나현 것은 빨간 갑이다.",
+        thought: "갑이 두 종류다.",
+        detail: "빨간 갑만 찌그러져 있다. 흰 갑은 비닐이 반쯤 남았다.",
       },
       {
         require: ["nh-jacket"],
-        thought: "끊으라고 해서 창가에서만 피운다.",
-        detail: "그래도 끊지는 않았다. 타협의 형태가 재떨이의 자리다.",
+        thought: "끊으라고 해서 창으로만 나간다.",
+        detail: "끊지는 않았다. 타협이 재떨이 자리다.",
       },
     ],
     inspect: {
@@ -165,18 +165,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "업무 전화가 많다.",
-        detail: "화면 잠금은 허술하다. 나현답다.",
+        thought: "업무 진동이 먼저 울린다.",
+        detail: "잠금이 헐겁다. 딜러 손이 빠른 방이다.",
       },
       {
         require: ["nh-receipts"],
-        thought: "보내지 않은 말이 남아 있다.",
-        detail: "초안은 전부 짧다. 감정적인 문장은 한 번도 완성되지 않았다.",
+        thought: "보내지 않은 칸이 남아 있다.",
+        detail: "초안이 전부 짧다. 긴 문장은 한 번도 완성되지 않았다.",
       },
       {
         require: ["nh-keys", "nh-cigs"],
-        thought: "다른 사람이 너를 챙기기 시작했을 때의 통화.",
-        detail: "짧고 거칠다. 나현의 질투는 네가 다른 사람을 보는 게 아니다. 다른 사람이 너에게 필요한 사람이 되는 것이다.",
+        thought: "공덕 발신. 0분 18초.",
+        detail: "거칠다. 다른 손이 필요해지기 시작한 시각이다.",
       },
     ],
     inspect: {
@@ -278,18 +278,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "아무렇게나 걸쳐진 가죽 재킷.",
-        detail: "성격이 보인다. 깨끗하지만 개지 않는다.",
+        thought: "가죽이 의자 등받이에서 식는다.",
+        detail: "개지 않는다. 깨끗하다. 어깨 선이 남아 있다.",
       },
       {
         require: ["nh-cigs"],
-        thought: "주머니에 나현 것이 아닌 물건.",
-        detail: "이어폰. 작은 라이터. 사이즈가 나현 손이 아니다.",
+        thought: "주머니에 손 크기가 다른 물건.",
+        detail: "이어폰. 작은 라이터. 손가락 간격이 안 맞는다.",
       },
       {
         require: ["nh-bed"],
-        thought: "이미 공동의 공간.",
-        detail: "나현은 네 물건을 따로 두지 않는다. 섞이게 둔다. 그게 선언이다.",
+        thought: "섞이게 둔다.",
+        detail: "따로 칸을 만들지 않는다. 선언 없이 섞인다.",
       },
     ],
     inspect: {
@@ -297,9 +297,9 @@ export const CLUES: Clue[] = [
       object: {
         lead: "어깨에 걸친 채 식어 있다.",
         lines: [
-          "안주머니에 영수증이 한 장 더 있다. 접혀 있다.",
+          "안주머니에 영수증이 한 장 더 접혀 있다.",
           "이어폰은 왼쪽.",
-          "나현 향과 다른 향이 안감에 남아 있다.",
+          "안감에 다른 향이 남는다.",
         ],
       },
     },
@@ -315,18 +315,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "짙고 드라이한 향.",
-        detail: "나현의 것. 금속과 담배 사이에 놓여 있다.",
+        thought: "드라이한 향이 금속 옆에 앉는다.",
+        detail: "담배와 시계 사이. 캡이 무겁다.",
       },
       {
         require: ["nh-jacket"],
         thought: "병이 두 개다.",
-        detail: "작은 쪽 뚜껑이 열려 있다. 나현 향이 아니다.",
+        detail: "작은 쪽 뚜껑이 반만 닫혀 있다. 이 방 향이 아니다.",
       },
       {
         require: ["nh-bed"],
-        thought: "지우는 쪽이 아니라 남겨두는 쪽.",
-        detail: "나현은 네 향을 이 방에 허용한다. 그게 나현식 동거다.",
+        thought: "지우는 손이 아니다.",
+        detail: "작은 병을 허용한다. 동거를 말로 하지 않는다.",
       },
     ],
     inspect: {
@@ -352,18 +352,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "합정. 비가 갠 뒤의 도로.",
-        detail: "차 불이 길게 늘어진다. 나현의 배경이다.",
+        thought: "합정. 갠 뒤의 도로.",
+        detail: "차 불이 유리 안으로 길게 들어온다. 이 높이에서 차가 손바닥만 하다.",
       },
       {
         require: ["nh-cigs"],
-        thought: "이 창가에서 담배를 피운다.",
-        detail: "실내에서는 안 피운다. 네가 싫어해서, 라고 적혀 있지는 않다. 재떨이의 위치만 그렇다.",
+        thought: "이 창으로만 나간다.",
+        detail: "실내 재는 없다. 적혀 있지는 않다. 재떨이 위치만 그렇다.",
       },
       {
         require: ["nh-phone", "nh-keys"],
         thought: "기다리는 자리.",
-        detail: "나현은 '언제 올 거냐'고 묻지 않는다. 창만 열어둔다.",
+        detail: "언제 올 거냐고 묻지 않는다. 창만 열어 둔다.",
       },
     ],
     inspect: {
@@ -373,7 +373,7 @@ export const CLUES: Clue[] = [
         lines: [
           "창틀에 재가 조금.",
           "아래 도로. 헤드라이트.",
-          "이 높이에서 차는 장난감처럼 작다. 나현은 저 아래를 자주 본다.",
+          "이 높이에서 차가 손바닥만 하다. 아래를 자주 본다.",
         ],
       },
     },
@@ -390,18 +390,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "쓰인 자국.",
-        detail: "혼자 잔 것 같지는 않다. 그래도 나현은 침대를 정리하지 않는다.",
+        thought: "쓰인 주름이 식지 않았다.",
+        detail: "혼자 잔 선이 아니다. 개지 않는다. 아침에도 그대로다.",
       },
       {
         require: ["nh-receipts"],
         thought: "베개 밑 충전기.",
-        detail: "나현 폰과 단자가 다르다. 여분이다. 네 것이다.",
+        detail: "단자가 안 맞는다. 여분이다. 이 방 폰이 아니다.",
       },
       {
         require: ["nh-invoice"],
         thought: "자리는 말로 만들지 않는다.",
-        detail: "나현은 '자러 와'라고 하지 않는다. 그냥 비워둔다. 이미 네 자리니까.",
+        detail: "자러 오라고 하지 않는다. 비워 둔다. 이미 자리니까.",
       },
     ],
     inspect: {
@@ -411,7 +411,7 @@ export const CLUES: Clue[] = [
         lines: [
           "베개 두 개. 높이가 다르다.",
           "한쪽 아래에 짧은 케이블.",
-          "머리 묶은 흔적이 아니다. 나현 머리 길이도 아니다.",
+          "머리 묶은 흔적이 이 방 머리 길이와 안 맞는다.",
         ],
       },
     },
@@ -428,18 +428,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "딜러 업무 서류.",
-        detail: "테이블 끝에 접혀 있다. 잉크가 번져 있다.",
+        thought: "딜러 서류가 테이블 끝에서 번진다.",
+        detail: "접혀 있다. 잉크가 손가락에 묻는다.",
       },
       {
         require: ["nh-keys"],
-        thought: "차량 명의가 나현이 아니다.",
-        detail: "차대번호 옆에 다른 이름이 있다. 네 것이다.",
+        thought: "차대번호 옆 이름이 이 방이 아니다.",
+        detail: "고객 차량. 키링 닳은 쪽과 맞는다.",
       },
       {
         require: ["nh-phone", "nh-bed"],
-        thought: "회사 할인도 안 받았다.",
-        detail: "자기 돈으로 처리한 흔적. 나현은 이걸 생색내지 않는다. 이미 네 여자 차니까.",
+        thought: "할인가가 빠져 있다.",
+        detail: "개인카드. 메모란: 건드리지 마. 내가 함. 생색 칸이 비어 있다.",
       },
     ],
     inspect: {
@@ -471,18 +471,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "업무 화면.",
-        detail: "정렬되어 있다. 유상답다. 공덕의 빌딩이 유리에 겹친다.",
+        thought: "업무 화면이 유리를 민다.",
+        detail: "정렬되어 있다. 공덕 빌딩이 모니터에 겹친다.",
       },
       {
         require: ["ys-sticky"],
-        thought: "다른 데스크톱이 있다.",
-        detail: "검색 기록. 업무가 아니다. 네가 좋아하는 것들에 대한 학습.",
+        thought: "다른 데스크톱이 숨어 있다.",
+        detail: "검색 기록. 스쿼드 지표가 아니다. 좋아하는 것들을 과제로 모은다.",
       },
       {
         require: ["ys-note"],
-        thought: "취향을 데이터처럼 모았다.",
-        detail: "초반에는 스토커처럼 보이지 않는다. 서툰 연애의 과잉 노력으로 보인다. 그게 더 오래 남는다.",
+        thought: "취향을 표로 쌓았다.",
+        detail: "초반에는 학습으로 보인다. 과잉 노력이 더 오래 남는다.",
       },
     ],
     inspect: {
@@ -508,8 +508,8 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "할 일처럼 보인다.",
-        detail: "세 장. 정렬이 살짝 어긋나 있다. 이 방에서 유일한 어긋남 중 하나.",
+        thought: "할 일 칸으로 보인다.",
+        detail: "세 장. 정렬이 살짝 뜬다. 이 방에서 드문 어긋남이다.",
       },
       {
         require: ["ys-monitors"],
@@ -518,8 +518,8 @@ export const CLUES: Clue[] = [
       },
       {
         require: ["ys-deleted"],
-        thought: "예의 바른 사람이 예의를 지우는 훈련.",
-        detail: "유상은 나쁜 여자가 되려고 매우 성실하다.",
+        thought: "예의를 지우는 훈련.",
+        detail: "나쁜 여자가 되려고 성실하다. 실패 칸이 더 길다.",
       },
     ],
     inspect: {
@@ -545,8 +545,8 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "책상 위 담배.",
-        detail: "이 방에선 이질적이다. 재떨이도 새것이다.",
+        thought: "책상 위 갑이 아직 새것이다.",
+        detail: "재떨이도 새것이다. 이 방 공기와 안 맞는다.",
       },
       {
         require: ["ys-monitors"],
@@ -555,8 +555,8 @@ export const CLUES: Clue[] = [
       },
       {
         require: ["ys-ref"],
-        thought: "참고서의 소품.",
-        detail: "나현을 흉내 내기 위해 샀다. 연기는 성실하고, 연기는 서툴다.",
+        thought: "참고서에서 산 소품.",
+        detail: "태도를 붙이려고 샀다. 성실하다. 서툴다.",
       },
     ],
     inspect: {
@@ -566,7 +566,7 @@ export const CLUES: Clue[] = [
         lines: [
           "라이터에 스크래치가 없다.",
           "재떨이는 아직 가격 스티커 자국이 있다.",
-          "창은 닫혀 있다. 이 방에서 피운 적은 없어 보인다.",
+          "창은 닫혀 있다. 이 방에서 피운 적은 없다.",
         ],
       },
     },
@@ -582,18 +582,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "업무 노트처럼 보인다.",
-        detail: "글씨가 반듯하다. 날짜가 정확하다.",
+        thought: "업무 노트 표지가 반듯하다.",
+        detail: "글씨가 곧다. 날짜가 정확하다.",
       },
       {
         require: ["ys-sticky"],
-        thought: "네가 한 말이 적혀 있다.",
-        detail: "그 말투 싫대. 잘 챙겨주는 건 부담이대. 회의록처럼 적혀 있다.",
+        thought: "한 말이 회의록으로 적혀 있다.",
+        detail: "그 말투 싫대. 잘 챙겨주는 건 부담이대. 칸이 나눠져 있다.",
       },
       {
         require: ["ys-deleted"],
-        thought: "관찰이 아니라 대본.",
-        detail: "유상은 너를 기억한다. 기억해서 지운다. 지워서 다른 사람이 되려 한다.",
+        thought: "관찰이 대본이 된다.",
+        detail: "기억해서 지운다. 지워서 다른 사람이 되려 한다.",
       },
     ],
     inspect: {
@@ -620,18 +620,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "충전 중인 워치.",
-        detail: "수면 데이터가 불규칙하다. 공덕의 야근처럼 보인다.",
+        thought: "충전 중인 워치가 깜빡인다.",
+        detail: "수면 링이 자주 끊긴다. 공덕 야근 시간이다.",
       },
       {
         require: ["ys-deleted"],
-        thought: "메시지 시간과 겹친다.",
-        detail: "네가 읽기 전에 유상은 깨어 있다. 연기의 준비 시간.",
+        thought: "메시지 시각과 겹친다.",
+        detail: "읽히기 전에 깨어 있다. 준비 시간이다.",
       },
       {
         require: ["ys-bed"],
-        thought: "연기하는 동안 제대로 자지 못했다.",
-        detail: "완벽한 낮의 유상과, 데이터를 숨기지 못한 밤.",
+        thought: "맞추는 동안 잠이 얇다.",
+        detail: "낮의 정렬. 밤의 데이터가 숨을 못 쉰다.",
       },
     ],
     inspect: {
@@ -640,8 +640,8 @@ export const CLUES: Clue[] = [
         lead: "수면 링이 자주 끊긴다.",
         lines: [
           "심박이 올라간 시각이 메시지 초안 시각과 같다.",
-          "운동 기록은 성실하다.",
-          "성실함이 이 방의 기본값이다.",
+          "운동 기록이 성실하다.",
+          "성실함이 이 방 기본값이다.",
         ],
       },
     },
@@ -657,28 +657,28 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "정렬된 침대.",
+        thought: "흰 침구가 반듯하다.",
         detail: "방 전체와 같다. 주름이 없다.",
       },
       {
         require: ["ys-wardrobe"],
         thought: "서랍만 다르다.",
-        detail: "여분 충전기. 머리끈. 유상 것이 아니다.",
+        detail: "여분 충전기. 머리끈. 이 방 손이 아니다.",
       },
       {
         require: ["ys-note", "ys-calendar"],
-        thought: "정돈벽이 무너지는 유일한 지점.",
-        detail: "네가 남긴 무질서를 치우지 못한다. 치우면 네가 안 온 방이 되니까.",
+        thought: "정돈벽이 무너지는 지점.",
+        detail: "남긴 무질서를 치우지 못한다. 치우면 선택받을 자리가 사라진다.",
       },
     ],
     inspect: {
       kind: "object",
       object: {
-        lead: "흰 침구. 너무 반듯하다.",
+        lead: "흰 침구. 주름이 없다.",
         lines: [
           "아래 서랍이 1cm 덜 닫혀 있다.",
           "그 안에만 생활이 있다.",
-          "유상의 방은 무대고, 이 서랍만 리허설이 아니다.",
+          "방은 맞고 이 서랍만 숙제가 아니다.",
         ],
       },
     },
@@ -694,8 +694,8 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "정돈된 옷장.",
-        detail: "회색, 남색, 흰색. 유상의 낮.",
+        thought: "옷장이 회색으로 맞는다.",
+        detail: "남색. 흰색. 낮의 정렬.",
       },
       {
         require: ["ys-monitors"],
@@ -704,8 +704,8 @@ export const CLUES: Clue[] = [
       },
       {
         require: ["ys-cigs", "ys-sticky"],
-        thought: "평소 취향이 아닌 옷.",
-        detail: "너를 위해 샀다. 아직 유상의 몸이 이 옷을 기억하지 못한다.",
+        thought: "평소 옷걸이가 아니다.",
+        detail: "선택받으려고 샀다. 몸이 이 옷을 아직 기억하지 못한다.",
       },
     ],
     inspect: {
@@ -713,9 +713,9 @@ export const CLUES: Clue[] = [
       object: {
         lead: "태그. 아직 잘리지 않았다.",
         lines: [
-          "사이즈는 맞다. 분위기는 아직 아니다.",
-          "옆에 평소 셔츠가 걸려 있다. 그게 더 유상이다.",
-          "유상은 옷을 고르는 일조차 과제처럼 수행한다.",
+          "사이즈는 맞다. 분위기가 아직 안 붙는다.",
+          "옆에 평소 셔츠가 걸려 있다. 그게 더 이 방이다.",
+          "옷 고르는 일조차 과제로 수행한다.",
         ],
       },
     },
@@ -732,18 +732,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "업무 캘린더.",
-        detail: "색이 나뉘어 있다. 유상은 분류를 좋아한다.",
+        thought: "업무 캘린더가 색으로 나뉜다.",
+        detail: "분류를 좋아한다. 칸이 정확하다.",
       },
       {
         require: ["ys-note"],
-        thought: "다른 색이 너의 하루다.",
-        detail: "퇴근. 식사. 수면. 정확할 필요는 없다. 유상은 정확해지려 한다.",
+        thought: "다른 색이 하루다.",
+        detail: "퇴근. 식사. 수면. 정확해지려 한다.",
       },
       {
         require: ["ys-watch"],
-        thought: "네 리듬에 자신을 맞춘다.",
-        detail: "선택받기 위해 유상은 시간부터 수정한다.",
+        thought: "리듬에 시간을 맞춘다.",
+        detail: "선택받으려고 시간부터 수정한다.",
       },
     ],
     inspect: {
@@ -770,8 +770,8 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "메신저. 최근 대화가 짧다.",
-        detail: "유상의 보낸 말은 전부 잘라져 있다.",
+        thought: "메신저. 보낸 칸이 짧다.",
+        detail: "보낸 말이 전부 잘려 있다.",
       },
       {
         require: ["ys-sticky"],
@@ -780,8 +780,8 @@ export const CLUES: Clue[] = [
       },
       {
         require: ["ys-note", "ys-cigs"],
-        thought: "진심을 지우고 연기를 보냈다.",
-        detail: "유상은 네가 좋아하는 사람이 되려다, 네가 좋아할 문장만 남겼다.",
+        thought: "진심을 지우고 과제를 보냈다.",
+        detail: "좋아할 문장만 남겼다. 지운 쪽이 더 길다.",
       },
     ],
     inspect: {
@@ -835,17 +835,17 @@ export const CLUES: Clue[] = [
       {
         require: [],
         thought: "이니셜 A.",
-        detail: "메모 앱 한 줄. 잠금은 없다. 유상은 이걸 숨길 생각을 늦게 했다.",
+        detail: "메모 앱 한 줄. 잠금이 없다. 숨길 생각을 늦게 했다.",
       },
       {
         require: ["ys-cigs"],
         thought: "말은 짧게. 행동은 먼저.",
-        detail: "안나현의 패턴이다. 라이벌의 이름이 아니라 참고서의 목차.",
+        detail: "합정 패턴이다. 참고서 목차로 적혀 있다.",
       },
       {
         require: ["ys-deleted", "ys-wardrobe"],
-        thought: "유상은 나현처럼 보이려고 성실하다.",
-        detail: "질투와 학습이 한 파일에 있다. 유상은 아직 선택받지 못했다고 믿는다.",
+        thought: "그 태도를 붙이려고 성실하다.",
+        detail: "질투와 학습이 한 파일에 있다. 아직 선택받지 못했다고 믿는다.",
       },
     ],
     inspect: {
@@ -873,18 +873,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "컵이 두 개.",
-        detail: "손님이 있었나. 찻물은 아직 따뜻하다.",
+        thought: "컵이 두 개다.",
+        detail: "찻물이 아직 따뜻하다. 김이 나무 테이블에 앉는다.",
       },
       {
         require: ["yg-bedding"],
-        thought: "한쪽 컵만 유난히 오래됐다.",
-        detail: "금이 가고, 손때 색이 다르다. 손님용 티가 아니다.",
+        thought: "한쪽 컵만 오래됐다.",
+        detail: "금이 가고 손때 색이 다르다. 손님 티가 아니다.",
       },
       {
         require: ["yg-drawer"],
-        thought: "네 자리는 원래부터 있었다.",
-        detail: "반영의 싱크대에 네 컵은 새로 생긴 물건이 아니다.",
+        thought: "자리는 원래부터 있었다.",
+        detail: "싱크대에 큰 컵은 새로 생긴 물건이 아니다.",
       },
     ],
     inspect: {
@@ -892,9 +892,9 @@ export const CLUES: Clue[] = [
       object: {
         lead: "흰 주전자. 컵 두 개. 무늬가 다르다.",
         lines: [
-          "작은 쪽은 새것에 가깝다. 반영의 것.",
+          "작은 쪽은 새것에 가깝다. 이 집 잔.",
           "큰 쪽은 입술이 닿는 곳이 닳아 있다.",
-          "차 브랜드는 십 년째 같은 것처럼 상자가 여러 겹이다.",
+          "차 상자가 여러 겹이다. 십 년째 같은 브랜드.",
         ],
       },
     },
@@ -910,8 +910,8 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "잘 개어진 손님용 이불.",
-        detail: "오래된 아파트에 흔한 친절. 꽃무늬 베개.",
+        thought: "이불이 잘 개어 있다.",
+        detail: "오래된 아파트 친절. 꽃무늬 베개. 접힌 선이 무겁다.",
       },
       {
         require: ["yg-tea"],
@@ -921,7 +921,7 @@ export const CLUES: Clue[] = [
       {
         require: ["yg-notes"],
         thought: "오늘 여기서 자.",
-        detail: "네가 약해질 때마다 꺼내는 침구. 귀환의 물증이 이불 형태로 쌓여 있다.",
+        detail: "약해질 때마다 꺼내는 침구. 귀환이 이불 층으로 쌓인다.",
       },
     ],
     inspect: {
@@ -930,8 +930,8 @@ export const CLUES: Clue[] = [
         lead: "개어져 있지만 가볍지 않다.",
         lines: [
           "아래층 이불일수록 더 낡았다.",
-          "맨 위만 손님처럼 보인다.",
-          "반영은 너를 위해 새 이불을 사지 않는다. 예전 것을 유지한다.",
+          "맨 위만 손님 얼굴이다.",
+          "새 이불을 사지 않는다. 예전 것을 유지한다.",
         ],
       },
     },
@@ -947,18 +947,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "오래된 사진.",
-        detail: "책장 칸. 흑백에 가까운 색. 교복 깃만 선명하다.",
+        thought: "오래된 사진이 칸에 기대 있다.",
+        detail: "흑백에 가까운 색. 교복 깃만 선명하다.",
       },
       {
         require: ["yg-book"],
-        thought: "너와 반영.",
-        detail: "십대. 얼굴보다 구도가 먼저 보인다. 반영이 너를 프레임 안에 넣고 있다.",
+        thought: "두 사람. 프레임이 먼저 보인다.",
+        detail: "십대. 한 쪽이 다른 쪽을 칸 안에 넣고 있다.",
       },
       {
         require: ["yg-drawer", "yg-notes"],
-        thought: "이 방에 네가 처음 들어온 시점을 찾기 어렵다.",
-        detail: "나현과 유상의 방에는 네가 들어온 시점이 보인다. 여기에는 없었던 시점이 없다.",
+        thought: "처음 들어온 시점을 찾기 어렵다.",
+        detail: "다른 두 집에는 들어온 선이 있다. 여기에는 없었던 층이 없다.",
       },
     ],
     inspect: {
@@ -966,7 +966,7 @@ export const CLUES: Clue[] = [
       photo: {
         era: "2012 전후 · 교복",
         caption:
-          "두 사람. 교복. 배경은 학교 뒤 담. 사진 아래 연필: '너'. 반영의 글씨다. 이름은 없다. 처음부터 너였다는 투다.",
+          "두 사람. 교복. 배경은 학교 뒤 담. 사진 아래 연필: '너'. 글씨가 이 집 글씨다. 이름 칸이 비어 있다. 처음부터 너였다는 투다.",
       },
     },
   },
@@ -981,18 +981,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "메모가 꽂힌 소설.",
-        detail: "편집자 방답게 책이 많다. 이 한 권만 유난히 바깥에 있다.",
+        thought: "메모가 꽂힌 소설이 바깥에 나와 있다.",
+        detail: "편집자 방답게 책이 많다. 이 한 권만 유난히 앞줄이다.",
       },
       {
         require: ["yg-photo"],
-        thought: "네가 고등학생 때 좋아했던 책.",
-        detail: "절판. 반영이 구해놓았다. 페이지 모서리가 너처럼 접혀 있다.",
+        thought: "고등학생 때 찾던 책.",
+        detail: "절판. 구해 두었다. 페이지 모서리가 같은 버릇으로 접혀 있다.",
       },
       {
         require: ["yg-notes"],
-        thought: "너는 이 책을 기억하지 못할 수도 있다.",
-        detail: "반영은 기억한다. 너의 취향을 보관하는 일이 반영의 일상이 된 지 오래다.",
+        thought: "이 책을 기억하지 못할 수도 있다.",
+        detail: "이쪽은 기억한다. 취향을 보관하는 일이 일상이 된 지 오래다.",
       },
     ],
     inspect: {
@@ -1018,18 +1018,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "책갈피처럼 꽂힌 종이.",
-        detail: "연희동의 습기가 종이를 물들여 있다.",
+        thought: "책갈피로 꽂힌 종이.",
+        detail: "연희동 습기가 종이를 노랗게 먹는다.",
       },
       {
         require: ["yg-photo"],
         thought: "날짜가 여러 해에 걸쳐 있다.",
-        detail: "2012, 2015, 2019, 2023. 이별, 실패, 취향. 편집자처럼 정확하다.",
+        detail: "2012, 2015, 2019, 2023. 이별. 실패. 취향. 교정 버릇이 남는다.",
       },
       {
         require: ["yg-letter", "yg-phone"],
-        thought: "돌봄처럼 보이는 기록.",
-        detail: "네가 돌아올 패턴을 알고 있다는 뜻이기도 하다. 반영 본인은 후자를 완전히 인정하지 않는다.",
+        thought: "돌봄으로 보이는 기록.",
+        detail: "돌아올 패턴을 안다. 후자를 인정하는 문장은 중간에 멈춘다.",
       },
     ],
     inspect: {
@@ -1038,7 +1038,7 @@ export const CLUES: Clue[] = [
         title: "책 사이에 끼워 둔 것들",
         pages: [
           "2012.11\n울 때 왼손을 먼저 숨김.\n전화 오면 거절하고 나중에 후회.",
-          "2015.03\n그 사람 끝나고 여기로 옴.\n술버릇 같음. 물 먼저.",
+          "2015.03\n끊고 여기로 옴.\n술버릇 같음. 물 먼저.",
           "2019.08\n또 그 버릇. 도망칠 때 오는 장소가 여긴가.\n내가 목적지인 건 아닌데.",
           "2023.02\n행복해 보이면 좋겠다.\n행복해 보여서 안 오면…\n(문장이 멈춤)",
         ],
@@ -1056,18 +1056,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "잡동사니.",
-        detail: "오래된 집의 서랍. 정돈되어 있지만 비어 있지는 않다.",
+        thought: "잡동사니가 부드럽게 열린다.",
+        detail: "오래된 집 서랍. 정돈되어 있다. 물건이 남는다.",
       },
       {
         require: ["yg-bedding"],
-        thought: "시기가 다른 네 물건들.",
-        detail: "충전기, 낡은 후드, 이어폰, 고등학교 때 뱃지. 한 사람의 여러 해.",
+        thought: "시기가 다른 물건들.",
+        detail: "충전기. 낡은 후드. 이어폰. 고등학교 뱃지. 한 사람의 여러 해.",
       },
       {
         require: ["yg-photo", "yg-book"],
-        thought: "없었던 시점이 없다.",
-        detail: "나현의 방, 유상의 방에는 네가 들어온 시점이 있다. 반영의 서랍에는 네 인생의 층이 쌓여 있다.",
+        thought: "없었던 층이 없다.",
+        detail: "다른 두 집에는 들어온 선이 있다. 여기 서랍에는 인생의 층이 쌓여 있다.",
       },
     ],
     inspect: {
@@ -1076,8 +1076,8 @@ export const CLUES: Clue[] = [
         lead: "나무 서랍. 부드럽게 열린다.",
         lines: [
           "위칸: 최근 충전기, 머리끈.",
-          "가운데: 후드. 사이즈가 반영이 아니다.",
-          "아래: 뱃지, 낡은 이어폰, 메모. 먼지가 없다. 자주 열어본다.",
+          "가운데: 후드. 사이즈가 이 집 손이 아니다.",
+          "아래: 뱃지, 낡은 이어폰, 메모. 먼지가 없다. 자주 연다.",
         ],
       },
     },
@@ -1094,17 +1094,17 @@ export const CLUES: Clue[] = [
       {
         require: [],
         thought: "연희동. 오래된 창틀.",
-        detail: "전선과 이웃집 불. 세 방 중 가장 편안해 보인다.",
+        detail: "전선과 이웃집 불. 세 집 중 창이 가장 가깝다.",
       },
       {
         require: ["yg-notes"],
-        thought: "네가 도망칠 때 오는 장소.",
-        detail: "창가에 짧은 메모. 반영의 글씨. 날짜는 없다. 반복이라서.",
+        thought: "도망칠 때 오는 장소.",
+        detail: "창가에 짧은 메모. 이 집 글씨. 날짜가 없다. 반복이라서.",
       },
       {
         require: ["yg-phone"],
         thought: "도주 경로의 도착지.",
-        detail: "반영은 목적지이기를 원한다. 동시에 네가 다른 곳에서 안정되기를 두려워한다. 둘 다 진짜다.",
+        detail: "목적지가 되고 싶다. 다른 곳에서 안정되기를 두려워한다. 둘 다 남는다.",
       },
     ],
     inspect: {
@@ -1113,8 +1113,8 @@ export const CLUES: Clue[] = [
         lead: "나무 창틀. 페인트가 얇다.",
         lines: [
           "유리에 손때.",
-          "아래 골목. 네가 올라오는 길이 한눈에 보인다.",
-          "이 창은 풍경이 아니라 감시가 아니다. 습관이다. 습관이 더 오래간다.",
+          "아래 골목. 올라오는 길이 한눈에 들어온다.",
+          "이 창은 풍경이 오래간다. 습관이 더 오래간다.",
         ],
       },
     },
@@ -1131,18 +1131,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "출판사 업무 일정.",
-        detail: "마포. 교정, 회의, 저자 통화. 반영의 낮.",
+        thought: "출판사 일정이 낮을 채운다.",
+        detail: "마포. 교정. 회의. 저자 통화.",
       },
       {
         require: ["yg-window"],
-        thought: "너 대신 취소한 약속.",
-        detail: "오늘 컨디션이 아니라서요. 반영의 목소리로 보내진 문장들.",
+        thought: "대신 취소한 약속.",
+        detail: "오늘 컨디션이 아니라서요. 이 집 목소리로 보내진 문장들.",
       },
       {
         require: ["yg-letter"],
-        thought: "보호처럼 보이는 개입.",
-        detail: "네 세계를 이 생활권 안으로 끌어당긴다. 전화하지 마. 내가 대신 말할게.",
+        thought: "보호로 보이는 개입.",
+        detail: "세계를 이 생활권 안으로 끌어당긴다. 전화하지 마. 내가 대신 말할게.",
       },
     ],
     inspect: {
@@ -1207,18 +1207,18 @@ export const CLUES: Clue[] = [
     layers: [
       {
         require: [],
-        thought: "반영이 쓰지 않은 글씨.",
-        detail: "서랍과 책 사이에서 미끄러져 나온 봉투.",
+        thought: "이 집 글씨가 아닌 봉투.",
+        detail: "서랍과 책 사이에서 미끄러져 나온 종이.",
       },
       {
         require: ["yg-phone"],
         thought: "예전 연애의 잔여.",
-        detail: "너에게 온 것. 왜 여기 있지. 반영의 방이 아닌 글이다.",
+        detail: "앞으로 온 것. 왜 여기 있지. 이 방 글이 아니다.",
       },
       {
         require: ["yg-photo", "yg-phone"],
         thought: "거둬들인 세계.",
-        detail: "네가 맡겼거나, 반영이 거둬들였다. 친절한 행동이 반드시 순수한 행동은 아니다. 그래도 악역의 편지는 아니다.",
+        detail: "맡겼거나 거둬들였다. 친절한 손이 거둬들인다. 악역 도장은 없다.",
       },
     ],
     inspect: {
@@ -1237,85 +1237,85 @@ export const INFERENCES: Inference[] = [
     id: "nh-i1",
     characterId: "nahyeon",
     require: ["nh-receipts", "nh-phone"],
-    title: "약은 나현의 것이 아니었다",
-    text: "나현은 아팠던 게 아니다. 네가 아팠던 날의 영수증이다. 나현은 그걸 말로 남기지 않았다.",
+    title: "약은 이 방 몸이 아니었다",
+    text: "아팠던 날의 영수증이다. 말은 안 남겼다. 손이 먼저 나갔다.",
   },
   {
     id: "nh-i2",
     characterId: "nahyeon",
     require: ["nh-keys", "nh-invoice"],
     title: "생활이 먼저 나갔다",
-    text: "차, 정비, 택시, 죽. 나현의 애정은 고백이 아니라 개입이다. 이미 네 여자라고 믿기 때문에.",
+    text: "차. 정비. 택시. 죽. 고백 칸이 비어 있다. 이미 집 차니까.",
   },
   {
     id: "nh-i3",
     characterId: "nahyeon",
     require: ["nh-phone", "nh-cigs", "nh-jacket"],
     title: "질투의 방향",
-    text: "나현이 거친 건 네가 다른 사람을 봐서가 아니다. 다른 사람이 너에게 필요한 사람이 되기 시작해서다.",
+    text: "거친 통화가 남는 밤. 다른 손이 필요해지기 시작한 시각이다.",
   },
   {
     id: "nh-i4",
     characterId: "nahyeon",
     require: ["nh-bed", "nh-perfume"],
     title: "이미 공동의 방",
-    text: "나현의 방은 너를 초대하지 않는다. 네가 없는 상태를 임시로 둘 뿐이다.",
+    text: "초대하지 않는다. 없는 상태를 임시로만 둔다.",
   },
   {
     id: "ys-i1",
     characterId: "yousang",
     require: ["ys-monitors", "ys-sticky"],
-    title: "성실한 연기",
-    text: "유상은 너를 감시하려고 방을 만든 게 아니다. 선택받으려고 자신을 수정하는 중이다.",
+    title: "성실한 과제",
+    text: "검색창이 새벽에 열린다. 선택받으려고 스스로를 수정하는 중이다.",
   },
   {
     id: "ys-i2",
     characterId: "yousang",
     require: ["ys-cigs", "ys-ref"],
     title: "참고서 A.",
-    text: "담배와 거친 말은 유상의 본성이 아니다. 안나현이라는 참고서를 성실히 따라 쓴 과제다.",
+    text: "담배와 거친 말은 본성이 붙기 전이다. 합정 태도를 성실히 따라 쓴 과제다.",
   },
   {
     id: "ys-i3",
     characterId: "yousang",
     require: ["ys-deleted", "ys-note"],
-    title: "지워진 쪽이 유상이다",
-    text: "보낸 문장은 연기다. 휴지통의 문장이 본래의 예의와 걱정이다. 유상은 그 틈을 들키는 게 두렵다.",
+    title: "지워진 쪽이 길다",
+    text: "보낸 칸은 연기다. 휴지통이 예의와 걱정이다. 그 틈을 들키는 게 두렵다.",
   },
   {
     id: "ys-i4",
     characterId: "yousang",
     require: ["ys-bed", "ys-wardrobe", "ys-calendar"],
     title: "정렬이 무너지는 곳",
-    text: "방은 완벽하다. 너와 관련된 부분만 아니다. 유상은 무질서를 사랑해서가 아니라, 너를 지우면 선택받을 자리가 없어져서 못 치운다.",
+    text: "방은 맞는다. 관련 서랍만 떠 있다. 지우면 선택받을 자리가 없어진다.",
   },
   {
     id: "yg-i1",
     characterId: "young",
     require: ["yg-tea", "yg-bedding"],
     title: "손님용이 아니다",
-    text: "컵과 이불은 방문객을 위한 세트가 아니다. 원래 여기 있던 사람의 자리다.",
+    text: "큰 컵 입구가 닳아 있다. 아래층 이불이 더 낡았다. 원래 여기 있던 자리다.",
   },
   {
     id: "yg-i2",
     characterId: "young",
     require: ["yg-photo", "yg-drawer"],
     title: "들어온 시점이 없다",
-    text: "나현과 유상의 방에는 네가 등장한 시점이 보인다. 반영의 방에는 네가 없던 층을 찾기 어렵다.",
+    text: "다른 두 집에는 등장한 선이 보인다. 여기에는 없던 층을 찾기 어렵다.",
   },
   {
     id: "yg-i3",
     characterId: "young",
     require: ["yg-notes", "yg-letter"],
     title: "수습의 역사",
-    text: "반영은 오래전부터 네 실패의 뒷처리를 해왔다. 그 친절은 진짜다. 그 친절이 너를 여기로 되돌리는 힘이기도 하다.",
+    text: "오래전부터 실패의 뒷처리를 해왔다. 그 친절은 남는다. 그 친절이 발을 여기로 되돌린다.",
   },
   {
     id: "yg-i4",
     characterId: "young",
     require: ["yg-window", "yg-phone"],
     title: "귀환 경로",
-    text: "반영은 다른 사람과 경쟁한다고 생각하지 않는다. 결국 다시 올 테니까. 가장 위협적인 것은 네가 더 이상 돌아올 필요가 없어지는 것이다.",
+    text: "다른 집과 줄을 선다고 생각하지 않는다. 결국 다시 올 테니까. 안 돌아와도 되는 안정이 더 차갑다.",
   },
 ];
 

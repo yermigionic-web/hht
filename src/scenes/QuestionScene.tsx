@@ -66,11 +66,11 @@ export default function QuestionScene() {
           </p>
         ))}
         {step === 0 && (
-          <p className="q-gate">열어 기록한 물건만 이 질문에 답한다. 건너뛸 수 없다.</p>
+          <p className="q-gate">적힌 것만 입을 연다. 건너뛸 손 없다.</p>
         )}
       </div>
       <button type="button" className="record-btn" onClick={next}>
-        {step === 0 ? "기록을 펼친다" : done ? "현장을 나온다" : "다음 기록"}
+        {step === 0 ? "적힌 걸 펼친다" : done ? "문을 닫는다" : "다음 기록"}
       </button>
     </section>
   );

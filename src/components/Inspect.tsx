@@ -55,7 +55,7 @@ export function Inspect({
     case "search":
       return (
         <article className="screen search">
-          <p className="chrome">기록 · 비공개</p>
+          <p className="chrome">검색 기록</p>
           <ul>
             {data.queries.map((q) => (
               <li key={q.time + q.query}>

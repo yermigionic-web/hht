@@ -33,7 +33,7 @@ export default function EpilogueScene() {
       {done ? (
         <div className="epi-actions">
           <button type="button" className="select-enter" onClick={() => nav("/select")}>
-            현장으로
+            다른 집
           </button>
           <button
             type="button"
@@ -43,7 +43,7 @@ export default function EpilogueScene() {
               nav("/");
             }}
           >
-            기록을 지운다
+            적힌 걸 지운다
           </button>
         </div>
       ) : (

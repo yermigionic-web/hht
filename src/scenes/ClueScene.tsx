@@ -59,7 +59,7 @@ export default function ClueScene() {
         </button>
         <p className="clue-name">{clue.name}</p>
         <span className={`layer-pip l${Math.max(stored, 0)}`}>
-          {done ? `${liveLayer + 1}/3` : stored < 0 ? "미기록" : `${stored + 1}/3`}
+          {done ? `${liveLayer + 1}/3` : stored < 0 ? "안 적음" : `${stored + 1}/3`}
         </span>
       </header>
 
@@ -72,7 +72,7 @@ export default function ClueScene() {
         </div>
         <aside className="clue-read">
           {needsUpdate && !done && (
-            <p className="updated">다른 단서와 겹친다. 안을 다시 보고 기록을 갱신해야 한다.</p>
+            <p className="updated">겹친다. 다시 열어 적는다.</p>
           )}
           {stored >= 0 && needsUpdate && !showLive && (
             <>
@@ -96,19 +96,19 @@ export default function ClueScene() {
             </>
           )}
           {!lookedInside && (
-            <p className="more">앱을 열어 안을 봐야 이 물건을 조사한 것이 된다.</p>
+            <p className="more">안을 안 열면 빈 껍데다.</p>
           )}
           {lookedInside && !done && stored < 0 && (
-            <p className="more">본 것을 기록해야 단서가 남는다. 열기만 해서는 선택되지 않는다.</p>
+            <p className="more">적어야 남는다. 본 것만으로는 증발한다.</p>
           )}
 
           {done ? (
             <button type="button" className="record-btn done" onClick={leave}>
-              방으로 돌아간다
+              문을 닫는다
             </button>
           ) : (
             <button type="button" className="record-btn" disabled={!lookedInside} onClick={save}>
-              {needsUpdate ? "갱신된 의미를 기록한다" : "이 물건을 기록한다"}
+              {needsUpdate ? "겹친 걸 다시 적는다" : "이 물건을 기록한다"}
             </button>
           )}
         </aside>

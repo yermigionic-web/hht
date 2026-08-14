@@ -84,7 +84,7 @@ export default function RoomScene() {
 
       <header className="room-hud top">
         <button type="button" className="ghost" onClick={() => nav("/select")}>
-          현장 목록
+          다른 집
         </button>
         <div className="room-id">
           <p className="kicker">
@@ -98,9 +98,7 @@ export default function RoomScene() {
       </header>
 
       <footer className="room-hud bottom">
-        <p className="room-hint">
-          물건을 열어 안을 보고 기록한다. 열기만 하면 남지 않는다.
-        </p>
+        <p className="room-hint">열어 적는다. 보기만 하면 증발한다.</p>
         {canAsk(ch.id) ? (
           <button
             type="button"
@@ -110,10 +108,10 @@ export default function RoomScene() {
               nav(`/room/${ch.id}/question`);
             }}
           >
-            나는 이 여자의 인생에서 대체 어떤 사람이었는가?
+            나는 이 여자의 인생에서 어떤 사람이었는가.
           </button>
         ) : (
-          <p className="ask-wait">질문은 기록을 다시 읽은 뒤에만 열린다.</p>
+          <p className="ask-wait">손이 아직 덜 갔다.</p>
         )}
       </footer>
     </section>
