@@ -36,9 +36,9 @@ export default function TitleScene() {
         <img className="logo" src={asset("images/logo.png")} alt="숨긴다고 숨겨지니 더 티 나" />
         <h1 className="title-name">세 개의 방</h1>
         <p className="title-q">나는 이 여자의 인생에서 어떤 사람이었는가.</p>
-        <p className="title-why">사랑한 정도가 아니라, 그 인생 안의 자리.</p>
+        <p className="title-why">방에 남는 손때. 불이 긴 창.</p>
         <button type="button" className="title-enter" onClick={enter}>
-          현장에 들어간다
+          문을 연다
         </button>
         <p className="title-hint">Enter</p>
       </div>

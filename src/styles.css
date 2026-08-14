@@ -143,6 +143,7 @@ img {
 
 .title-q {
   font-family: var(--serif);
+  font-style: italic;
   font-size: clamp(15px, 2.4vw, 20px);
   line-height: 1.7;
   color: rgba(236, 232, 225, 0.82);
@@ -150,6 +151,7 @@ img {
 }
 
 .title-why {
+  font-style: italic;
   font-size: 13px;
   color: var(--muted);
   line-height: 1.6;
@@ -240,6 +242,7 @@ img {
 .select-sub {
   margin-top: 6px;
   font-size: 12px;
+  font-style: italic;
   color: var(--muted);
 }
 
@@ -428,6 +431,7 @@ img {
 }
 .select-why {
   font-size: 13px;
+  font-style: italic;
   line-height: 1.55;
   color: rgba(236, 232, 225, 0.72);
   max-width: 420px;
@@ -749,10 +753,12 @@ img {
 }
 .room-hint {
   font-size: 12px;
+  font-style: italic;
   color: var(--muted);
 }
 .ask-wait {
   font-size: 12px;
+  font-style: italic;
   color: var(--muted);
   max-width: 280px;
 }
@@ -886,11 +892,13 @@ img {
 }
 .thought {
   font-family: var(--serif);
+  font-style: italic;
   font-size: 22px;
   line-height: 1.45;
   margin-bottom: 14px;
 }
 .detail {
+  font-style: italic;
   font-size: 15px;
   line-height: 1.75;
   color: rgba(236, 232, 225, 0.82);
@@ -898,6 +906,7 @@ img {
 .more {
   margin-top: 18px;
   font-size: 12px;
+  font-style: italic;
   color: var(--muted);
 }
 .record-btn {
@@ -1226,6 +1235,7 @@ img {
 .empty {
   color: var(--muted);
   font-size: 14px;
+  font-style: italic;
 }
 
 /* question / epilogue */
@@ -1246,6 +1256,7 @@ img {
 }
 .q-gate {
   font-size: 13px;
+  font-style: italic;
   color: var(--muted);
   line-height: 1.6;
 }
@@ -1272,12 +1283,14 @@ img {
 }
 .beat {
   font-size: 16px;
+  font-style: italic;
   line-height: 1.75;
   color: rgba(236, 232, 225, 0.88);
   animation: scene-in 0.5s ease both;
 }
 .beat.last {
   font-family: var(--serif);
+  font-style: normal;
   font-size: 20px;
   margin-top: 12px;
   color: var(--accent, #d7c4a3);
