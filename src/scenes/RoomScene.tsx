@@ -98,7 +98,7 @@ export default function RoomScene() {
       </header>
 
       <footer className="room-hud bottom">
-        <p className="room-hint">열어 적는다. 보기만 하면 증발한다.</p>
+        <p className="room-hint">손대서 적어야 남는다. 열어두기만 하면 빈 껍데기다.</p>
         {canAsk(ch.id) ? (
           <button
             type="button"
@@ -111,7 +111,7 @@ export default function RoomScene() {
             나는 이 여자의 인생에서 어떤 사람이었는가.
           </button>
         ) : (
-          <p className="ask-wait">손이 아직 덜 갔다.</p>
+          <p className="ask-wait">이 방의 손때가 아직 덜 묻었다.</p>
         )}
       </footer>
     </section>
