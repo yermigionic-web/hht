@@ -71,18 +71,99 @@ img {
   font-weight: 500;
 }
 
-.mute-btn {
+.floater {
   position: fixed;
   top: calc(14px + var(--safe));
   right: 16px;
   z-index: 50;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+  max-width: min(280px, calc(100vw - 28px));
+  pointer-events: none;
+}
+.floater > * {
+  pointer-events: auto;
+}
+.floater-face {
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(7, 7, 9, 0.72);
   border: 1px solid var(--line);
+}
+.floater-disc {
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+.floater-disc.spin {
+  animation: disc-spin 7.5s linear infinite;
+  transform-origin: 50% 50%;
+}
+@keyframes disc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.floater-panel {
+  width: min(260px, calc(100vw - 32px));
+  padding: 12px 12px 10px;
+  background: rgba(7, 7, 9, 0.88);
+  border: 1px solid var(--line);
+}
+.floater-meta {
+  font-size: 10px;
+  letter-spacing: 0.14em;
   color: var(--muted);
-  background: rgba(7, 7, 9, 0.45);
-  backdrop-filter: blur(8px);
+  margin-bottom: 8px;
+}
+.floater-lyric {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.45;
+  margin: 0 0 4px;
+}
+.floater-bar {
+  display: block;
+  width: 100%;
+  height: 4px;
+  margin: 10px 0 8px;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.12);
+  border: 0;
+  cursor: pointer;
+}
+.floater-bar span {
+  display: block;
+  height: 100%;
+  background: var(--accent, #d7c4a3);
+  pointer-events: none;
+}
+.floater-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.floater-ctrl {
+  width: 36px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  color: var(--fg);
+  border: 1px solid var(--line);
+  background: transparent;
+}
+.floater-ctrl svg {
+  width: 16px;
+  height: 16px;
+}
+.floater-ctrl.play {
+  width: 42px;
 }
 
 .ghost {
