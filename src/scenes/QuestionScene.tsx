@@ -66,7 +66,7 @@ export default function QuestionScene() {
           </p>
         ))}
         {step === 0 && (
-          <p className="q-gate">적힌 것만 입을 연다. 건너뛸 손 없다.</p>
+          <p className="q-gate">적어 둔 것만 입으로 꺼낼 수 있다. 건너뛸 기록은 없다.</p>
         )}
       </div>
       <button type="button" className="record-btn" onClick={next}>

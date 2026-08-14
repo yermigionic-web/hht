@@ -38,10 +38,11 @@ export const CHARACTERS: Character[] = [
     room: asset("images/nahyeon_room.png"),
     backdrop: asset("images/nahyeon_bg.png"),
     stage: "이미 골라 둔 여자다. 왜 다시 줄을 서.",
-    premise: "이미 서로 골랐다.",
+    premise: "서로 고른 뒤다. 고백 칸은 비어 있다.",
     desire: "생활에서 제일 필요한 손으로 남는다.",
-    fear: "다른 손이 더 필요해지는 것.",
-    reason: "창틀에 재가 붙는다. 아래 도로가 젖고 헤드라이트만 길다.",
+    fear: "다른 손이 더 필요해지는 밤.",
+    reason:
+      "창틀 재가 아직 따뜻하다. 아래 도로는 젖어 있고 헤드라이트만 길게 남는다. 이 방은 말보다 손이 먼저 나간다.",
   },
   {
     id: "yousang",
@@ -58,10 +59,11 @@ export const CHARACTERS: Character[] = [
     room: asset("images/yousang_room.png"),
     backdrop: asset("images/yousang_bg.png"),
     stage: "맞춰 두면 그때는 고르겠지.",
-    premise: "아직 선택받지 못했다.",
-    desire: "선택받고 싶다.",
-    fear: "지운 쪽이 진짜일 가능성.",
-    reason: "모서리가 맞는다. 서랍만 손가락 한 마디 떠 있다.",
+    premise: "아직 줄이 안 끊겼다고 믿는다.",
+    desire: "원하는 쪽으로 몸을 바꿔서 고르게 만든다.",
+    fear: "지운 문장이 진짜였다는 날.",
+    reason:
+      "모서리가 맞는 방이다. 책상 서랍만 손가락 한 마디 떠 있다. 밤마다 검색창이 새벽 시간을 깨운다.",
   },
   {
     id: "young",
@@ -78,10 +80,11 @@ export const CHARACTERS: Character[] = [
     room: asset("images/young_room.png"),
     backdrop: asset("images/young_bg.png"),
     stage: "고를 일이 없다. 처음부터 이 집 안이었다.",
-    premise: "고르는 절차가 없다.",
+    premise: "들어온 날이 없다. 처음부터 여기였다.",
     desire: "이 생활 안에 발이 남기를.",
-    fear: "여기로 안 돌아와도 되는 안정.",
-    reason: "찻물 김이 창틀을 적신다. 페인트가 얇고 골목이 가깝다.",
+    fear: "돌아올 필요가 없어지는 안정.",
+    reason:
+      "찻물 김이 창틀을 적신다. 페인트는 얇고 골목은 가깝다. 큰 컵 입구만 오래전부터 닳아 있다.",
   },
 ];
 

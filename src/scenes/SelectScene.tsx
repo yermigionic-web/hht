@@ -72,7 +72,7 @@ export default function SelectScene() {
 
       <header className="select-top">
         <p className="kicker">문 앞</p>
-        <p className="select-sub">문고리에 밤 공기가 남아 있다.</p>
+        <p className="select-sub">문고리 금속이 아직 따뜻하다. 세 집 중 하나를 연다.</p>
       </header>
 
       <div className="stage-world">

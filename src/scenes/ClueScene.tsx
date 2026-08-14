@@ -72,7 +72,7 @@ export default function ClueScene() {
         </div>
         <aside className="clue-read">
           {needsUpdate && !done && (
-            <p className="updated">겹친다. 다시 열어 적는다.</p>
+            <p className="updated">다른 기록과 겹친다. 다시 펼쳐 적는다.</p>
           )}
           {stored >= 0 && needsUpdate && !showLive && (
             <>
@@ -96,10 +96,10 @@ export default function ClueScene() {
             </>
           )}
           {!lookedInside && (
-            <p className="more">안을 안 열면 빈 껍데다.</p>
+            <p className="more">안쪽을 열지 않으면 표면만 남는다.</p>
           )}
           {lookedInside && !done && stored < 0 && (
-            <p className="more">적어야 남는다. 본 것만으로는 증발한다.</p>
+            <p className="more">적어야 기억에 남는다. 본 것만으로는 사라진다.</p>
           )}
 
           {done ? (

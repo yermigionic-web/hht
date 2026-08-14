@@ -42,7 +42,9 @@ export default function RecordScene() {
       <div className="record-body">
         <section>
           <h3>적어 둔 것</h3>
-          {entries.length === 0 && <p className="empty">아직 손이 안 갔다. 열어 두기만 하면 증발한다.</p>}
+          {entries.length === 0 && (
+            <p className="empty">아직 아무것도 적지 않았다. 방에서 물건을 열어도 적지 않으면 기억에 남지 않는다.</p>
+          )}
           <ul className="record-list">
             {entries.map(({ clue, layer, reading, first }) => (
               <li key={clue.id} onClick={() => nav(`/room/${ch.id}/clue/${clue.id}`)}>
@@ -63,7 +65,9 @@ export default function RecordScene() {
         <section>
           <h3>겹친 것</h3>
           {inferences.length === 0 && (
-            <p className="empty">같은 손을 가리키는 물건이 두 개 이상 적히면 여기 생긴다.</p>
+            <p className="empty">
+              서로 다른 물건이 같은 손을 가리킬 때 여기에 겹친다. 기록이 쌓여야 추론이 생긴다.
+            </p>
           )}
           <ul className="record-list infer">
             {inferences.map((inf) => (
@@ -81,7 +85,7 @@ export default function RecordScene() {
           나는 이 여자의 인생에서 어떤 사람이었는가.
         </button>
       ) : (
-        <p className="ask-wait">손이 아직 덜 갔다.</p>
+        <p className="ask-wait">이 방의 손때가 아직 덜 묻었다.</p>
       )}
     </section>
   );
