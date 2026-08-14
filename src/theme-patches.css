@@ -45,34 +45,111 @@
   font-family: var(--serif);
 }
 
-/* mute inherits the room it sits over */
-.app:has([data-character="nahyeon"]) .mute-btn {
-  font-family: var(--font);
-  letter-spacing: 0.08em;
-  border-radius: 0;
+/* floating player skins */
+.floater.is-nahyeon .floater-face,
+.floater.is-nahyeon .floater-panel {
   transform: skewX(-8deg);
   border-color: #c8c2e0;
-  background: linear-gradient(180deg, rgba(28, 20, 48, 0.82), rgba(8, 6, 16, 0.82));
-  color: #d8d0f0;
-  backdrop-filter: none;
+  background: linear-gradient(180deg, rgba(28, 20, 48, 0.92), rgba(8, 6, 16, 0.92));
 }
-.app:has([data-character="yousang"]) .mute-btn {
-  font-family: var(--mono);
-  letter-spacing: 0.22em;
+.floater.is-nahyeon .floater-face {
+  border-radius: 2px;
+}
+.floater.is-nahyeon .floater-panel {
+  box-shadow: 0 10px 0 #1c1630;
+}
+.floater.is-nahyeon .floater-meta,
+.floater.is-nahyeon .floater-lyric,
+.floater.is-nahyeon .floater-controls {
+  transform: skewX(8deg);
+}
+.floater.is-nahyeon .floater-lyric {
+  letter-spacing: 0.01em;
+}
+.floater.is-nahyeon .floater-ctrl {
+  transform: skewX(-6deg);
+  border-color: #c8c2e0;
+  background: linear-gradient(180deg, #d8d4ec, #5a4a88);
+  color: #0c0814;
+}
+.floater.is-nahyeon .floater-bar span {
+  background: #b9a8e6;
+}
+
+.floater.is-yousang .floater-face,
+.floater.is-yousang .floater-panel,
+.floater.is-yousang .floater-ctrl {
   border-radius: 0;
+  font-family: var(--mono);
   border-color: #5ec4b8;
   background: #061210;
-  color: #5ec4b8;
-  backdrop-filter: none;
+  color: #d4eee8;
 }
-.app:has([data-character="young"]) .mute-btn {
-  font-family: var(--serif);
-  letter-spacing: 0.12em;
+.floater.is-yousang .floater-face {
+  box-shadow: 0 0 0 1px #5ec4b8;
+}
+.floater.is-yousang .floater-meta,
+.floater.is-yousang .floater-lyric {
+  font-family: var(--mono);
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+.floater.is-yousang .floater-lyric {
+  font-size: 11px;
+  line-height: 1.55;
+}
+.floater.is-yousang .floater-ctrl {
+  box-shadow: 0 3px 0 #1a3a36;
+}
+.floater.is-yousang .floater-bar span {
+  background: #5ec4b8;
+}
+.floater.is-yousang.on .eq-bar {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: eq-pulse 0.55s ease-in-out infinite alternate;
+}
+.floater.is-yousang.on .eq-bar:nth-child(3) {
+  animation-duration: 0.4s;
+}
+.floater.is-yousang.on .eq-bar:nth-child(4) {
+  animation-duration: 0.7s;
+}
+@keyframes eq-pulse {
+  from {
+    transform: scaleY(0.45);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.floater.is-young .floater-face,
+.floater.is-young .floater-panel {
   border-radius: 0;
   border-color: #b88898;
   background: #f2e4ea;
   color: #1a1418;
-  backdrop-filter: none;
+}
+.floater.is-young .floater-meta {
+  font-family: var(--serif);
+  color: #5a3848;
+}
+.floater.is-young .floater-lyric {
+  font-family: var(--serif);
+  color: #1a1418;
+}
+.floater.is-young .floater-ctrl {
+  border-color: #b88898;
+  background: #efe0e6;
+  color: #1a1418;
+  box-shadow: 2px 2px 0 #2a1c24;
+}
+.floater.is-young .floater-bar {
+  background: rgba(90, 56, 72, 0.2);
+}
+.floater.is-young .floater-bar span {
+  background: #b88898;
 }
 
 /* ── overlay (edges only) ── */

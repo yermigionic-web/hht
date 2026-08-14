@@ -9,14 +9,20 @@ import {
 } from "react";
 import type { CharacterId } from "../game/types";
 import { CHARACTERS } from "../game/characters";
-import { resumeAudio, setSfxMuted } from "./sfx";
+import { resumeAudio } from "./sfx";
 
 const BGM_VOL = 0.32;
 
 interface AudioApi {
-  muted: boolean;
-  toggleMute: () => void;
+  track: CharacterId | null;
+  playing: boolean;
+  progress: number;
   playBgm: (id: CharacterId | "title" | null) => void;
+  pause: () => void;
+  resume: () => void;
+  toggle: () => void;
+  restart: () => void;
+  seek: (ratio: number) => void;
   unlocked: boolean;
   unlock: () => void;
 }
@@ -24,17 +30,20 @@ interface AudioApi {
 const Ctx = createContext<AudioApi | null>(null);
 
 export function AudioProvider({ children }: { children: ReactNode }) {
-  const [muted, setMuted] = useState(false);
+  const [track, setTrack] = useState<CharacterId | null>(null);
+  const [playing, setPlaying] = useState(false);
+  const [progress, setProgress] = useState(0);
   const [unlocked, setUnlocked] = useState(false);
   const current = useRef<CharacterId | "title" | null>(null);
-  const nodes = useRef<Record<string, HTMLAudioElement>>({});
+  const nodes = useRef<Partial<Record<CharacterId, HTMLAudioElement>>>({});
   const fades = useRef<Map<HTMLAudioElement, number>>(new Map());
-  const mutedRef = useRef(false);
+  const pausedRef = useRef(false);
 
-  useEffect(() => {
-    mutedRef.current = muted;
-    setSfxMuted(muted);
-  }, [muted]);
+  const getEl = useCallback(() => {
+    const id = current.current;
+    if (!id || id === "title") return undefined;
+    return nodes.current[id];
+  }, []);
 
   const stopFade = (el: HTMLAudioElement) => {
     const id = fades.current.get(el);
@@ -68,37 +77,44 @@ export function AudioProvider({ children }: { children: ReactNode }) {
 
   const startTrack = useCallback((el: HTMLAudioElement) => {
     stopFade(el);
-    if (mutedRef.current) {
-      el.volume = 0;
+    if (pausedRef.current) {
       el.pause();
+      setPlaying(false);
       return;
     }
-    el.volume = Math.min(el.volume, 0.001);
+    el.volume = Math.min(el.volume || 0, 0.001);
     const play = el.play();
     if (play) play.catch(() => {});
     fade(el, BGM_VOL, 700);
+    setPlaying(true);
   }, []);
 
   const playBgm = useCallback(
     (id: CharacterId | "title" | null) => {
       if (current.current === id) {
         const same = id && id !== "title" ? nodes.current[id] : undefined;
-        if (same && same.paused && !mutedRef.current) startTrack(same);
+        if (same && same.paused && !pausedRef.current) startTrack(same);
         return;
       }
 
       const prev = current.current;
       current.current = id;
+      setTrack(id && id !== "title" ? id : null);
 
-      if (prev && nodes.current[prev]) {
+      if (prev && prev !== "title" && nodes.current[prev]) {
         const old = nodes.current[prev];
         fade(old, 0, 600, () => {
           if (current.current !== prev) old.pause();
         });
       }
 
-      if (!id || id === "title") return;
+      if (!id || id === "title") {
+        setPlaying(false);
+        setProgress(0);
+        return;
+      }
 
+      pausedRef.current = false;
       const ch = CHARACTERS.find((c) => c.id === id);
       if (!ch) return;
       let el = nodes.current[id];
@@ -113,25 +129,76 @@ export function AudioProvider({ children }: { children: ReactNode }) {
     [startTrack],
   );
 
-  useEffect(() => {
-    const id = current.current;
-    if (!id || id === "title") return;
-    const el = nodes.current[id];
+  const pause = useCallback(() => {
+    pausedRef.current = true;
+    setPlaying(false);
+    const el = getEl();
     if (!el) return;
-    if (muted) {
-      fade(el, 0, 280, () => {
-        if (mutedRef.current) el.pause();
-      });
-    } else {
-      startTrack(el);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [muted]);
+    fade(el, 0, 220, () => {
+      if (pausedRef.current) el.pause();
+    });
+  }, [getEl]);
 
-  const toggleMute = useCallback(() => setMuted((m) => !m), []);
+  const resume = useCallback(() => {
+    unlock();
+    pausedRef.current = false;
+    const el = getEl();
+    if (el) startTrack(el);
+    else setPlaying(false);
+  }, [getEl, startTrack, unlock]);
+
+  const toggle = useCallback(() => {
+    if (pausedRef.current || !playing) resume();
+    else pause();
+  }, [pause, playing, resume]);
+
+  const restart = useCallback(() => {
+    unlock();
+    const el = getEl();
+    if (!el) return;
+    el.currentTime = 0;
+    setProgress(0);
+    pausedRef.current = false;
+    startTrack(el);
+  }, [getEl, startTrack, unlock]);
+
+  const seek = useCallback(
+    (ratio: number) => {
+      const el = getEl();
+      if (!el || !el.duration || !Number.isFinite(el.duration)) return;
+      el.currentTime = Math.min(1, Math.max(0, ratio)) * el.duration;
+      setProgress(el.duration ? el.currentTime / el.duration : 0);
+    },
+    [getEl],
+  );
+
+  useEffect(() => {
+    const tick = () => {
+      const el = getEl();
+      if (!el || !el.duration || !Number.isFinite(el.duration)) return;
+      setProgress(el.currentTime / el.duration);
+      setPlaying(!el.paused && !pausedRef.current);
+    };
+    const id = window.setInterval(tick, 240);
+    return () => window.clearInterval(id);
+  }, [getEl, track]);
 
   return (
-    <Ctx.Provider value={{ muted, toggleMute, playBgm, unlocked, unlock }}>
+    <Ctx.Provider
+      value={{
+        track,
+        playing,
+        progress,
+        playBgm,
+        pause,
+        resume,
+        toggle,
+        restart,
+        seek,
+        unlocked,
+        unlock,
+      }}
+    >
       {children}
     </Ctx.Provider>
   );
